@@ -227,7 +227,7 @@
   /* ---------- IMPACT STRIP ---------- */
   .impact-strip {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 28px;
     margin-bottom: 56px;
     padding-bottom: 48px;
@@ -345,56 +345,6 @@
     color: var(--text-primary);
   }
 
-  /* ---------- PIPELINE DIAGRAM ---------- */
-  .pipeline-diagram {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0;
-    margin-bottom: 32px;
-  }
-  .pipeline-node {
-    background: var(--surface-raised);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 14px 16px;
-    cursor: pointer;
-    transition: border-color 0.2s ease, background 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 0 0 auto;
-  }
-  .pipeline-node:hover { border-color: var(--text-muted); }
-  .pipeline-node.active { border-color: var(--accent); background: rgba(200, 240, 77, 0.07); }
-  .pipeline-node .step-num { font-size: 12px; color: var(--accent); }
-  .pipeline-node .step-name { font-size: 12.5px; color: var(--text-primary); max-width: 168px; line-height: 1.3; }
-  .pipeline-connector {
-    color: var(--border);
-    font-family: 'JetBrains Mono', monospace;
-    padding: 0 8px;
-    flex: 0 0 auto;
-  }
-  .pipeline-detail {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    padding: 26px 30px;
-    min-height: 96px;
-  }
-  .pipeline-detail .step-title {
-    color: var(--accent);
-    font-size: 13px;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-  }
-  .pipeline-detail p {
-    color: var(--text-secondary);
-    font-size: 14.5px;
-    line-height: 1.6;
-  }
-
   /* ---------- TOOLS ---------- */
   .tools-grid {
     display: grid;
@@ -485,9 +435,6 @@
     .terminal { padding: 20px; font-size: 12.5px; }
     .project-card, .principle-card { padding: 22px 20px; }
     .impact-strip { grid-template-columns: 1fr 1fr; }
-    .pipeline-node { width: 100%; }
-    .pipeline-connector { display: none; }
-    .pipeline-detail { padding: 20px; }
   }
 </style>
 </head>
@@ -567,17 +514,6 @@
   </div>
 </section>
 
-<section id="pipeline">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 data-i18n="pipelineHeadline"></h2>
-      <p data-i18n="pipelineSub"></p>
-    </div>
-    <div class="pipeline-diagram" id="pipeline-diagram"></div>
-    <div class="pipeline-detail" id="pipeline-detail"></div>
-  </div>
-</section>
-
 <section id="tools">
   <div class="wrap">
     <div class="section-head">
@@ -632,9 +568,9 @@ const translations = {
 
     howHeadline: "How I approach every revenue problem I take on.",
     how1Title: "People drive every decision.",
-    how1Body: "Every system I have ever led and built started with one question — what is the human on the other end of this actually trying to do? Not what the data says. Not what the brief says. What the person needs. That instinct, sharpened over a decade of leading communities and teams across three continents, is what makes the revenue systems I architect feel different from the ones built by people who never had to lead.",
+    how1Body: "Every system I have ever led and built started with one question — what is the human on the other end of this actually trying to do? Not what the data says. Not what the brief says. What the person needs. That instinct, sharpened over a decade of leading communities and teams across two continents, is what makes the revenue systems I architect feel different from the ones built by people who never had to lead.",
     how2Title: "I build what others wish existed.",
-    how2Body: "I wrote my first line of code in the fourth grade at age nine. Not because someone told me to — because I wanted to understand how things worked underneath. That instinct never left. Today I architect GTM systems in Python, build data pipelines from scratch, and integrate AI at the infrastructure level. I do not configure tools other people built. I lead the architectural thinking and then build the thing myself.",
+    how2Body: "I wrote my first line of code in the fourth grade at age nine. Not because someone told me to — because I wanted to understand how things worked underneath. That instinct never left. Today I architect GTM systems, build data pipelines from scratch, and integrate AI at the infrastructure level. I do not configure tools other people built. I lead the architectural thinking and then build the thing myself.",
     how3Title: "Leverage over budget. Always.",
     how3Body: "The best revenue solutions are rarely the most expensive ones. They are the most intelligent ones. I have led and built systems that do the work of entire teams at a fraction of the cost — by finding the highest-leverage architectural move in every situation, then shipping it fast and measuring everything. That is how I think about every growth problem I take on.",
 
@@ -648,9 +584,6 @@ const translations = {
     readMore: "Read the full case study",
     readLess: "Show less",
     filterAll: "All",
-
-    pipelineHeadline: "Inside one system, step by step.",
-    pipelineSub: "A closer look at how the End-to-End Lead Enrichment & Outbound Engine actually runs — the same 40+ step pipeline referenced in the case study above. Click a step to see what it does.",
 
     toolsHeadline: "The stack. Led, built, and owned end to end.",
     toolsSub: "Every tool below is something I have architected systems around, integrated from scratch, or built on top of at the infrastructure level. Not things I have read about.",
@@ -675,9 +608,9 @@ const translations = {
 
     howHeadline: "Wie ich an jedes Revenue-Problem herangehe, das ich übernehme.",
     how1Title: "Menschen treiben jede Entscheidung.",
-    how1Body: "Jedes System, das ich je geführt und gebaut habe, begann mit einer einzigen Frage — was versucht der Mensch am anderen Ende wirklich zu erreichen? Nicht was die Daten sagen. Nicht was das Briefing sagt. Was die Person braucht. Dieser Instinkt, geschärft durch ein Jahrzehnt der Führung von Teams auf drei Kontinenten, ist es, der die Revenue-Systeme, die ich architektiere, anders anfühlen lässt.",
+    how1Body: "Jedes System, das ich je geführt und gebaut habe, begann mit einer einzigen Frage — was versucht der Mensch am anderen Ende wirklich zu erreichen? Nicht was die Daten sagen. Nicht was das Briefing sagt. Was die Person braucht. Dieser Instinkt, geschärft durch ein Jahrzehnt der Führung von Teams auf zwei Kontinenten, ist es, der die Revenue-Systeme, die ich architektiere, anders anfühlen lässt.",
     how2Title: "Ich baue, was andere sich wünschen.",
-    how2Body: "Ich habe meine erste Zeile Code in der vierten Klasse mit neun Jahren geschrieben. Nicht weil jemand es mir gesagt hat — sondern weil ich verstehen wollte, wie Dinge darunter funktionieren. Heute entwerfe ich GTM-Systeme in Python, baue Datenpipelines von Grund auf und integriere KI auf Infrastrukturebene. Ich konfiguriere keine Tools, die andere gebaut haben. Ich führe das architektonische Denken und baue dann das Ding selbst.",
+    how2Body: "Ich habe meine erste Zeile Code in der vierten Klasse mit neun Jahren geschrieben. Nicht weil jemand es mir gesagt hat — sondern weil ich verstehen wollte, wie Dinge darunter funktionieren. Heute entwerfe ich GTM-Systeme, baue Datenpipelines von Grund auf und integriere KI auf Infrastrukturebene. Ich konfiguriere keine Tools, die andere gebaut haben. Ich führe das architektonische Denken und baue dann das Ding selbst.",
     how3Title: "Hebel über Budget. Immer.",
     how3Body: "Die besten Revenue-Lösungen sind selten die teuersten. Sie sind die intelligentesten. Ich habe Systeme geführt und gebaut, die die Arbeit ganzer Teams zu einem Bruchteil der Kosten erledigen — indem ich in jeder Situation den Hebel mit der höchsten Wirkung finde, ihn dann schnell baue und alles messe.",
 
@@ -691,9 +624,6 @@ const translations = {
     readMore: "Vollständige Case Study lesen",
     readLess: "Weniger anzeigen",
     filterAll: "Alle",
-
-    pipelineHeadline: "Ein System im Detail, Schritt für Schritt.",
-    pipelineSub: "Ein genauerer Blick darauf, wie die End-to-End Lead-Anreicherungs- & Outbound-Engine tatsächlich läuft — dieselbe 40+ Schritte umfassende Pipeline aus der Case Study oben. Klicke auf einen Schritt, um zu sehen, was er tut.",
 
     toolsHeadline: "Der Stack. Geführt, gebaut und end-to-end verantwortet.",
     toolsSub: "Jedes Tool unten ist etwas, um das ich Systeme architektiert, von Grund auf integriert oder auf Infrastrukturebene weitergebaut habe. Keine Tools, über die ich nur gelesen habe.",
@@ -720,8 +650,6 @@ const PILLARS = [
 
 const IMPACT_STATS = [
   { value: "15", labelEn: "systems designed, architected, and built end-to-end", labelDe: "end-to-end entworfene, architektierte und gebaute Systeme" },
-  { value: "40+", labelEn: "steps in a single enrichment pipeline", labelDe: "Schritte in einer einzigen Anreicherungs-Pipeline" },
-  { value: "83%", labelEn: "of a lead set enriched with industry tags", labelDe: "eines Lead-Sets mit Industrie-Tags angereichert" },
   { value: "20k+ €", labelEn: "at-risk invoice volume protected by one detection engine", labelDe: "gefährdetes Rechnungsvolumen durch eine Detection-Engine geschützt" },
   { value: "100%", labelEn: "verified accuracy on financial-statement ingestion", labelDe: "verifizierte Genauigkeit bei der Finanzberichts-Ingestion" }
 ];
@@ -772,8 +700,8 @@ const PROJECTS = [
     stack:["Clay","BetterContact","OpenAI GPT","Zenrows"] },
 
   { pillar:"B", titleEn:"Backdoor-Detection Revenue-Protection Engine", titleDe:"Backdoor-Detection-Engine zur Umsatzsicherung",
-    problemEn:"Candidates placed through the firm could be hired directly by the client company, bypassing the agency's invoice (\"backdoor\" hires) — silent, hard-to-detect revenue leakage.",
-    problemDe:"Über die Firma vermittelte Kandidaten konnten direkt vom Kundenunternehmen eingestellt werden und so die Rechnung der Agentur umgehen („Backdoor\"-Einstellungen) — stille, schwer erkennbare Umsatzlecks.",
+    problemEn:"Candidates placed through the recruitment firm could be hired directly by the client company, bypassing the agency's invoice (\"backdoor\" hires) — silent, hard-to-detect revenue leakage.",
+    problemDe:"Über die Recruiting-Firma vermittelte Kandidaten konnten direkt vom Kundenunternehmen eingestellt werden und so die Rechnung der Agentur umgehen („Backdoor\"-Einstellungen) — stille, schwer erkennbare Umsatzlecks.",
     costEn:"Unbilled placements and unrecoverable revenue.",
     costDe:"Nicht abgerechnete Vermittlungen und nicht rückholbarer Umsatz.",
     solutionEn:"Built an end-to-end detection workflow (candidate profile discovery → resolve current-employer URL → match against client companies across hiring stages). Improved profile-find rates to make matching possible, and fixed a systemic data error where a large batch of records were misassigned to a placeholder company.",
@@ -897,7 +825,7 @@ const TOOL_GROUPS = [
   { labelEn:"Build and Code", labelDe:"Build und Code", tools:["Python","JavaScript","TypeScript","React","SQL","R","Java","HTML/CSS","Git","GitHub Actions","Google Apps Script","Docker"] },
   { labelEn:"GTM and Outreach", labelDe:"GTM und Outreach", tools:["Clay","Smartlead","HeyReach","Apollo","Lusha","BetterContact","TheirStack","Close CRM","HubSpot","RecruitCRM","Gamma API","LinkedIn Recruiter"] },
   { labelEn:"AI and Automation", labelDe:"KI und Automatisierung", tools:["Claude","Claude Code","OpenAI GPT","Make","Zapier","Webhooks","REST APIs","MCP","Claygent","Autonomous agent routines"] },
-  { labelEn:"Data and Intelligence", labelDe:"Daten und Intelligence", tools:["SQLite","Supabase","Airtable","Notion","Metricool","Zenrows","0CodeKit"] },
+  { labelEn:"Data and Intelligence", labelDe:"Daten und Intelligence", tools:["SQLite","Airtable","Notion","Zenrows","0CodeKit"] },
   { labelEn:"Workspace and Ops", labelDe:"Workspace und Ops", tools:["Google Workspace","Slack","Miro","Loom","Qonto","1Password"] },
   { labelEn:"Languages", labelDe:"Sprachen", tools:["Hindi (native)","English (native)","Deutsch C1","Español (learning)","Bengali (spoken)"] }
 ];
@@ -944,38 +872,10 @@ const PRINCIPLES = [
     bodyDe:"Die tiefste Quelle nachhaltiger Führungsenergie, die ich je gefunden habe, ist die Frage — was braucht die Welt, das ich einzigartig bauen kann? Wenn diese Frage die Arbeit antreibt, fühlt sich die Arbeit nie wie Arbeit an." }
 ];
 
-const PIPELINE_STEPS = [
-  { en:"Website Discovery / Recovery / Merge", de:"Website Discovery / Recovery / Merge",
-    descEn:"Resolve each company's canonical website, recover broken or missing URLs, and merge duplicate records into one.",
-    descDe:"Die kanonische Website jeder Firma auflösen, defekte oder fehlende URLs wiederherstellen und doppelte Datensätze zusammenführen." },
-  { en:"Company-Name Normalization", de:"Firmennamen-Normalisierung",
-    descEn:"Standardize company names across every data source into one consistent format.",
-    descDe:"Firmennamen über alle Datenquellen hinweg in ein einheitliches Format bringen." },
-  { en:"LinkedIn Discovery / Cleaning / Waterfall / Merge", de:"LinkedIn Discovery / Cleaning / Waterfall / Merge",
-    descEn:"Locate each company's LinkedIn presence through a multi-provider waterfall, clean the results, and merge them into the master record.",
-    descDe:"Die LinkedIn-Präsenz jeder Firma über einen Multi-Provider-Waterfall finden, die Ergebnisse bereinigen und in den Master-Datensatz mergen." },
-  { en:"Email Waterfall", de:"E-Mail-Waterfall",
-    descEn:"Run enrichment across multiple providers in sequence to resolve verified decision-maker emails.",
-    descDe:"Anreicherung über mehrere Anbieter nacheinander ausführen, um verifizierte E-Mail-Adressen von Entscheidungsträgern zu ermitteln." },
-  { en:"Job-Title Resolution", de:"Jobtitel-Auflösung",
-    descEn:"Normalize raw job titles into standardized roles usable for segmentation and targeting.",
-    descDe:"Rohe Jobtitel in standardisierte Rollen für Segmentierung und Targeting überführen." },
-  { en:"Source Tagging", de:"Source-Tagging",
-    descEn:"Tag every record with its originating source for attribution and downstream filtering.",
-    descDe:"Jeden Datensatz mit seiner Ursprungsquelle für Attribution und nachgelagerte Filterung taggen." },
-  { en:"Lead Lookup / Create / Update", de:"Lead Lookup / Create / Update",
-    descEn:"Check the CRM for an existing lead record, then create or update it without duplicating.",
-    descDe:"Das CRM auf einen bestehenden Lead-Datensatz prüfen und ihn ohne Duplizierung erstellen oder aktualisieren." },
-  { en:"Contact Lookup / Create / Update", de:"Contact Lookup / Create / Update",
-    descEn:"Check the CRM for an existing contact record, then create or update it without duplicating.",
-    descDe:"Das CRM auf einen bestehenden Kontakt-Datensatz prüfen und ihn ohne Duplizierung erstellen oder aktualisieren." }
-];
-
 /* ================= STATE ================= */
 
 let currentLang = 'en';
 let activePillar = 'all';
-let activePipelineStep = 0;
 
 /* ================= RENDER ================= */
 
@@ -1078,32 +978,6 @@ function toggleProjectCard(headEl) {
   btn.textContent = expanded ? t.readLess : t.readMore;
 }
 
-function renderPipeline(lang) {
-  const diagram = document.getElementById('pipeline-diagram');
-  diagram.innerHTML = PIPELINE_STEPS.map((s, i) => `
-    ${i > 0 ? '<span class="pipeline-connector">→</span>' : ''}
-    <div class="pipeline-node ${i === activePipelineStep ? 'active' : ''}" onclick="selectPipelineStep(${i})">
-      <span class="step-num mono">0${i + 1}</span>
-      <span class="step-name">${lang === 'en' ? s.en : s.de}</span>
-    </div>
-  `).join('');
-  renderPipelineDetail(lang);
-}
-
-function renderPipelineDetail(lang) {
-  const el = document.getElementById('pipeline-detail');
-  const step = PIPELINE_STEPS[activePipelineStep];
-  el.innerHTML = `
-    <div class="step-title mono">0${activePipelineStep + 1} · ${lang === 'en' ? step.en : step.de}</div>
-    <p>${lang === 'en' ? step.descEn : step.descDe}</p>
-  `;
-}
-
-function selectPipelineStep(i) {
-  activePipelineStep = i;
-  renderPipeline(currentLang);
-}
-
 function renderTools(lang) {
   const grid = document.getElementById('tools-grid');
   grid.innerHTML = TOOL_GROUPS.map(g => `
@@ -1129,7 +1003,6 @@ function renderAll(lang) {
   renderImpactStats(lang);
   renderFilterBar(lang);
   renderProjects(lang);
-  renderPipeline(lang);
   renderTools(lang);
   renderPrinciples(lang);
 }
