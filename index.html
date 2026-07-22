@@ -73,25 +73,32 @@
   }
   .lang-toggle {
     display: flex;
-    gap: 10px;
     align-items: center;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    overflow: hidden;
   }
   .lang-toggle button {
     background: none;
     border: none;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     cursor: pointer;
     font-family: inherit;
     font-size: inherit;
-    padding: 4px 2px;
-    transition: color 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    padding: 8px 16px;
+    transition: background 0.2s ease, color 0.2s ease;
   }
   .lang-toggle button.active {
-    color: var(--accent);
+    background: var(--accent);
+    color: var(--bg);
   }
-  .lang-toggle .sep { color: var(--border); }
+  .lang-toggle button:not(.active):hover {
+    color: var(--text-primary);
+  }
 
   /* ---------- SECTION SHELL ---------- */
   section {
@@ -445,7 +452,6 @@
     <div class="nav-name">Shuvadarshan Bhual</div>
     <div class="lang-toggle">
       <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
-      <span class="sep">/</span>
       <button id="btn-de" onclick="setLang('de')">DE</button>
     </div>
   </div>
