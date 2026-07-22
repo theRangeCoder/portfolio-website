@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuvadarshan Bhual — GTM Leader &amp; Revenue Architect</title>
+<meta name="description" content="GTM leader, revenue architect, and systems builder. Problems led, architected, and solved end to end.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0A0A;
+    --surface: #141414;
+    --surface-raised: #1C1C1C;
+    --accent: #C8F04D;
+    --text-primary: #EDEAE0;
+    --text-secondary: #999690;
+    --text-muted: #555250;
+    --border: #2A2A2A;
+    --max-w: 1120px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(10, 10, 10, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-name {
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+  .lang-toggle {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 4px 2px;
+    transition: color 0.2s ease;
+  }
+  .lang-toggle button.active {
+    color: var(--accent);
+  }
+  .lang-toggle .sep { color: var(--border); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section {
+    padding: 120px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  .section-head { margin-bottom: 64px; max-width: 720px; }
+  .section-head h2 {
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+  .section-head p {
+    color: var(--text-secondary);
+    font-size: 17px;
+    max-width: 640px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero { padding-top: 80px; padding-bottom: 100px; }
+
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 28px 32px;
+    max-width: 620px;
+    margin-bottom: 56px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    min-height: 140px;
+  }
+  .terminal .line-1 { color: var(--text-primary); }
+  .terminal .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1s step-start infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-content {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .hero-content.visible { opacity: 1; }
+
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    max-width: 880px;
+    margin-bottom: 28px;
+  }
+  .hero .sub {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-bottom: 24px;
+  }
+  .hero .roleline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 56px;
+    letter-spacing: 0.02em;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  .stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(40px, 6vw, 56px);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    max-width: 220px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: none;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    padding: 14px 24px;
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .cta-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ---------- HOW I BUILD ---------- */
+  .cols-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .col h3 {
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 18px;
+  }
+  .col p {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--surface-raised);
+    border-radius: 2px;
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+  }
+  .project-card h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+  }
+  .project-row { margin-bottom: 16px; }
+  .project-row:last-child { margin-bottom: 0; }
+  .project-row .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .project-row .value {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .project-row .stack-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+
+  /* ---------- TOOLS ---------- */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 48px;
+  }
+  .tool-group-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .tool-list {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--text-primary);
+    line-height: 1.9;
+  }
+
+  /* ---------- PRINCIPLES ---------- */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .principle-card {
+    background: var(--surface-raised);
+    border-top: 2px solid var(--accent);
+    border-radius: 2px;
+    padding: 26px 28px;
+  }
+  .principle-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .principle-card p {
+    font-size: 14.5px;
+    color: var(--text-secondary);
+  }
+
+  /* ---------- CTA SECTION ---------- */
+  .cta-section { text-align: left; }
+  .cta-section h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 600; margin-bottom: 20px; max-width: 720px; }
+  .cta-section p { color: var(--text-secondary); font-size: 17px; max-width: 640px; margin-bottom: 40px; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 48px 0;
+    text-align: center;
+  }
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-text {
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .cols-3 { grid-template-columns: 1fr; gap: 40px; }
+    .project-grid { grid-template-columns: 1fr; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; gap: 36px; }
+  }
+  @media (max-width: 480px) {
+    section { padding: 80px 0; }
+    .hero { padding-top: 56px; padding-bottom: 64px; }
+    .terminal { padding: 20px; font-size: 12.5px; }
+    .project-card, .principle-card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap">
+    <div class="nav-name">Shuvadarshan Bhual</div>
+    <div class="lang-toggle">
+      <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+      <span class="sep">/</span>
+      <button id="btn-de" onclick="setLang('de')">DE</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="terminal mono" id="terminal"></div>
+
+    <div class="hero-content" id="hero-content">
+      <h1 data-i18n="heroHeadline"></h1>
+      <p class="sub" data-i18n="heroSub"></p>
+      <p class="roleline mono" data-i18n="heroRole"></p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num" data-count="9">0</div>
+          <div class="stat-label" data-i18n="stat1"></div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="10">0</div>
+          <div class="stat-label" data-i18n="stat2"></div>
+        </div>
+        <div class="stat">
+          <div class="stat-num" data-count="4">0</div>
+          <div class="stat-label" data-i18n="stat3"></div>
+        </div>
+      </div>
+
+      <a href="#projects" class="cta-btn mono" data-i18n="heroCta"></a>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="howHeadline"></h2>
+    </div>
+    <div class="cols-3">
+      <div class="col">
+        <h3 data-i18n="how1Title"></h3>
+        <p data-i18n="how1Body"></p>
+      </div>
+      <div class="col">
+        <h3 data-i18n="how2Title"></h3>
+        <p data-i18n="how2Body"></p>
+      </div>
+      <div class="col">
+        <h3 data-i18n="how3Title"></h3>
+        <p data-i18n="how3Body"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="projectsHeadline"></h2>
+      <p data-i18n="projectsSub"></p>
+    </div>
+    <div class="project-grid" id="project-grid"></div>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="toolsHeadline"></h2>
+      <p data-i18n="toolsSub"></p>
+    </div>
+    <div class="tools-grid" id="tools-grid"></div>
+  </div>
+</section>
+
+<section id="principles">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="principlesHeadline"></h2>
+      <p data-i18n="principlesSub"></p>
+    </div>
+    <div class="principles-grid" id="principles-grid"></div>
+  </div>
+</section>
+
+<section id="build-something">
+  <div class="wrap cta-section">
+    <h2 data-i18n="ctaHeadline"></h2>
+    <p data-i18n="ctaSub"></p>
+    <a href="https://www.linkedin.com/in/shuvadarshan-bhual/" target="_blank" rel="noopener" class="cta-btn mono" data-i18n="ctaButton"></a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/shuvadarshan-bhual/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/theRangeCoder" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:sbhual1998@gmail.com">Email</a>
+    </div>
+    <div class="footer-text" data-i18n="footerText"></div>
+  </div>
+</footer>
+
+<script>
+/* ================= DATA ================= */
+
+const translations = {
+  en: {
+    heroHeadline: "I lose sleep over your revenue problems. Then I build systems that fix them permanently.",
+    heroSub: "Not with cold automation. Not with faceless processes. With systems that understand people, eliminate waste, multiply productivity, protect margins, and compound over time — led and built by someone genuinely obsessed with making businesses and the humans inside them thrive.",
+    heroRole: "GTM Leader · Revenue Architect · Systems Builder · Growth Engineer",
+    stat1: "the age I wrote my first line of code. Not as a hobby. As a way of thinking.",
+    stat2: "years leading people through uncertainty, change, and growth.",
+    stat3: "languages spoken. Because the best GTM insight often lives in a conversation most people cannot have.",
+    heroCta: "See how I think and build →",
+
+    howHeadline: "How I approach every revenue problem I take on.",
+    how1Title: "People drive every decision.",
+    how1Body: "Every system I have ever led and built started with one question — what is the human on the other end of this actually trying to do? Not what the data says. Not what the brief says. What the person needs. That instinct, sharpened over a decade of leading communities and teams across three continents, is what makes the revenue systems I architect feel different from the ones built by people who never had to lead.",
+    how2Title: "I build what others wish existed.",
+    how2Body: "I wrote my first line of code in the fourth grade at age nine. Not because someone told me to — because I wanted to understand how things worked underneath. That instinct never left. Today I architect GTM systems in Python, build data pipelines from scratch, and integrate AI at the infrastructure level. I do not configure tools other people built. I lead the architectural thinking and then build the thing myself.",
+    how3Title: "Leverage over budget. Always.",
+    how3Body: "The best revenue solutions are rarely the most expensive ones. They are the most intelligent ones. I have led and built systems that do the work of entire teams at a fraction of the cost — by finding the highest-leverage architectural move in every situation, then shipping it fast and measuring everything. That is how I think about every growth problem I take on.",
+
+    projectsHeadline: "The problems I am obsessed with solving.",
+    projectsSub: "These are not just projects. They are the kinds of problems that keep me up at night — revenue leaking invisibly, pipelines running blind, systems that force humans to do what machines should do. Every solution here was designed, architected, and built end to end by me alone.",
+    labelProblem: "The Problem",
+    labelCost: "Cost of Inaction",
+    labelSolution: "What I Built",
+    labelResult: "Result and Impact",
+    labelStack: "Stack",
+
+    toolsHeadline: "The stack. Led, built, and owned end to end.",
+    toolsSub: "Every tool below is something I have architected systems around, integrated from scratch, or built on top of at the infrastructure level. Not things I have read about.",
+
+    principlesHeadline: "The principles I lead and build by.",
+    principlesSub: "Not values I chose because they sound right. Principles I have stress-tested against real leadership, real failure, and real growth.",
+
+    ctaHeadline: "Ready to build revenue infrastructure that actually compounds?",
+    ctaSub: "If you are scaling a GTM function, solving a revenue problem that requires both strategic leadership and hands-on systems building, or looking for someone who thinks in decades not quarters — connect with me on LinkedIn. I respond to every thoughtful message personally.",
+    ctaButton: "Connect on LinkedIn →",
+
+    footerText: "Built by Shuvadarshan Bhual · GTM Leader · Revenue Architect · Human first."
+  },
+  de: {
+    heroHeadline: "Ich verliere den Schlaf über deine Revenue-Probleme. Dann baue ich Systeme, die sie dauerhaft lösen.",
+    heroSub: "Nicht mit kalter Automatisierung. Nicht mit gesichtslosen Prozessen. Mit Systemen, die Menschen verstehen, Verschwendung eliminieren, Produktivität vervielfachen, Margen schützen und sich über Zeit verbessern — geführt und gebaut von jemandem, der wirklich besessen davon ist, Unternehmen und die Menschen darin zum Aufblühen zu bringen.",
+    heroRole: "GTM Leader · Revenue-Architekt · Systems Builder · Growth Engineer",
+    stat1: "das Alter, in dem ich meine erste Zeile Code schrieb. Nicht als Hobby. Als Denkweise.",
+    stat2: "Jahre, in denen ich Menschen durch Unsicherheit, Wandel und Wachstum geführt habe.",
+    stat3: "Sprachen. Weil die besten GTM-Erkenntnisse oft in Gesprächen entstehen, die die meisten nicht führen können.",
+    heroCta: "So denke und baue ich →",
+
+    howHeadline: "Wie ich an jedes Revenue-Problem herangehe, das ich übernehme.",
+    how1Title: "Menschen treiben jede Entscheidung.",
+    how1Body: "Jedes System, das ich je geführt und gebaut habe, begann mit einer einzigen Frage — was versucht der Mensch am anderen Ende wirklich zu erreichen? Nicht was die Daten sagen. Nicht was das Briefing sagt. Was die Person braucht. Dieser Instinkt, geschärft durch ein Jahrzehnt der Führung von Teams auf drei Kontinenten, ist es, der die Revenue-Systeme, die ich architektiere, anders anfühlen lässt.",
+    how2Title: "Ich baue, was andere sich wünschen.",
+    how2Body: "Ich habe meine erste Zeile Code in der vierten Klasse mit neun Jahren geschrieben. Nicht weil jemand es mir gesagt hat — sondern weil ich verstehen wollte, wie Dinge darunter funktionieren. Heute entwerfe ich GTM-Systeme in Python, baue Datenpipelines von Grund auf und integriere KI auf Infrastrukturebene. Ich konfiguriere keine Tools, die andere gebaut haben. Ich führe das architektonische Denken und baue dann das Ding selbst.",
+    how3Title: "Hebel über Budget. Immer.",
+    how3Body: "Die besten Revenue-Lösungen sind selten die teuersten. Sie sind die intelligentesten. Ich habe Systeme geführt und gebaut, die die Arbeit ganzer Teams zu einem Bruchteil der Kosten erledigen — indem ich in jeder Situation den Hebel mit der höchsten Wirkung finde, ihn dann schnell baue und alles messe.",
+
+    projectsHeadline: "Die Probleme, die ich leidenschaftlich löse.",
+    projectsSub: "Das sind keine bloßen Projekte. Es sind die Arten von Problemen, die mich nachts beschäftigen — unsichtbar verlierender Umsatz, blind laufende Pipelines, Systeme, die Menschen tun lassen, was Maschinen tun sollten. Jede Lösung hier wurde von mir allein entworfen, architektiert und gebaut — von Anfang bis Ende.",
+    labelProblem: "Das Problem",
+    labelCost: "Kosten des Nichthandelns",
+    labelSolution: "Was Ich Gebaut Habe",
+    labelResult: "Ergebnis und Wirkung",
+    labelStack: "Stack",
+
+    toolsHeadline: "Der Stack. Geführt, gebaut und end-to-end verantwortet.",
+    toolsSub: "Jedes Tool unten ist etwas, um das ich Systeme architektiert, von Grund auf integriert oder auf Infrastrukturebene weitergebaut habe. Keine Tools, über die ich nur gelesen habe.",
+
+    principlesHeadline: "Die Prinzipien, nach denen ich führe und baue.",
+    principlesSub: "Keine Werte, die ich gewählt habe, weil sie gut klingen. Prinzipien, die ich an echter Führung, echtem Scheitern und echtem Wachstum gemessen habe.",
+
+    ctaHeadline: "Bereit, Revenue-Infrastruktur zu bauen, die wirklich wächst?",
+    ctaSub: "Wenn du eine GTM-Funktion skalierst, ein Revenue-Problem löst, das sowohl strategische Führung als auch technisches Bauen erfordert, oder jemanden suchst, der in Jahrzehnten statt Quartalen denkt — verbinde dich auf LinkedIn. Ich antworte auf jede durchdachte Nachricht persönlich.",
+    ctaButton: "Auf LinkedIn vernetzen →",
+
+    footerText: "Gebaut von Shuvadarshan Bhual · GTM Leader · Revenue-Architekt · Mensch zuerst."
+  }
+};
+
+const PROJECTS = [
+  { titleEn:"End-to-End Lead Enrichment & Outbound Engine", titleDe:"End-to-End Lead-Anreicherungs- & Outbound-Engine",
+    problemEn:"Company & contact data was incomplete, duplicated, and unusable for outbound; there was no repeatable path from a raw job/company signal to an enriched, CRM-ready decision-maker.",
+    problemDe:"Firmen- und Kontaktdaten waren unvollständig, dupliziert und für Outbound unbrauchbar; es gab keinen wiederholbaren Weg von einem rohen Job-/Firmensignal zu einem angereicherten, CRM-fertigen Entscheidungsträger.",
+    costEn:"Sales working off bad data, wasted enrichment spend, no scalable pipeline.",
+    costDe:"Vertrieb arbeitete mit schlechten Daten, verschwendetes Anreicherungsbudget, keine skalierbare Pipeline.",
+    solutionEn:"Designed a full CRM → Clay → CRM pipeline: company + contact enrichment (LinkedIn/domain-based), buyer-persona matching, deduplication, \"already-processed\" flagging, and Lead-ID-based updates to prevent double-processing. Extended it into a 40+ step contact pipeline (website discovery/recovery/merge → company-name normalization → LinkedIn discovery/cleaning/waterfall/merge → email waterfall → job-title resolution → source tagging → lead lookup/create/update → contact lookup/create/update) acting as a single source of truth.",
+    solutionDe:"Vollständige CRM → Clay → CRM Pipeline konzipiert: Firmen- + Kontaktanreicherung (LinkedIn-/Domain-basiert), Buyer-Persona-Matching, Deduplizierung, „bereits verarbeitet\"-Markierung und Lead-ID-basierte Updates zur Vermeidung von Doppelverarbeitung. Ausgebaut zu einer 40+ Schritte umfassenden Kontakt-Pipeline (Website Discovery/Recovery/Merge → Firmennamen-Normalisierung → LinkedIn Discovery/Cleaning/Waterfall/Merge → E-Mail-Waterfall → Jobtitel-Auflösung → Source-Tagging → Lead Lookup/Create/Update → Contact Lookup/Create/Update) als Single Source of Truth.",
+    resultEn:"Enriched ~83% of a processed lead set with industry tags after removing ~17% as duplicates; additionally recovered a batch of company URLs at zero enrichment cost. Outcome: a repeatable, deduplicated enrichment machine feeding clean, CRM-ready decision-makers into the funnel.",
+    resultDe:"~83% eines verarbeiteten Lead-Sets mit Industrie-Tags angereichert, nachdem ~17% als Duplikate entfernt wurden; zusätzlich eine Reihe von Firmen-URLs zu null Anreicherungskosten wiederhergestellt. Ergebnis: eine wiederholbare, deduplizierte Anreicherungsmaschine, die saubere, CRM-fertige Entscheidungsträger in den Funnel speist.",
+    stack:["Clay","Close CRM","RecruitCRM","BetterContact","Lusha","Apollo","Claygent","REST APIs"] },
+
+  { titleEn:"ICP Definition & Multi-Segment Target-List Construction", titleDe:"ICP-Definition & Multi-Segment-Ziellistenaufbau",
+    problemEn:"Outbound lacked sharply defined, enriched, segment-specific target lists aligned to the company's ideal customer profiles.",
+    problemDe:"Dem Outbound fehlten scharf definierte, angereicherte, segmentspezifische Ziellisten, die auf die idealen Kundenprofile des Unternehmens ausgerichtet waren.",
+    costEn:"Diluted messaging, low reply rates, wasted rep time on poor-fit accounts.",
+    costDe:"Verwässerte Botschaften, niedrige Antwortraten, verschwendete Vertriebszeit bei schlecht passenden Accounts.",
+    solutionEn:"Built and structured multiple ICP segments end-to-end (company discovery → decision-maker enrichment → role-based segmentation): high-growth tech scale-ups, a digital-mid-market B2B-software segment, and an AI-engineering specialization (built a dedicated sourcing guide with AI-engineer filters). Produced role-segmented, name-cleaned lists mapped to sequencing-tool variables.",
+    solutionDe:"Mehrere ICP-Segmente end-to-end aufgebaut und strukturiert (Firmen-Discovery → Entscheidungsträger-Anreicherung → rollenbasierte Segmentierung): wachstumsstarke Tech-Scale-ups, ein digitales B2B-Software-Mittelstandssegment und eine AI-Engineering-Spezialisierung (dedizierter Sourcing-Guide mit AI-Engineer-Filtern). Rollensegmentierte, namensbereinigte Listen erstellt, die auf die Variablen der Sequencing-Tools gemappt wurden.",
+    resultEn:"Qualified a sourced mid-market segment down to ~50% ICP-fit companies; recovered ~43% of otherwise-missing senior-role (CTO) profiles via a custom enrichment prompt; ~93% list-to-platform import success rate. Outcome: clean, role-segmented, campaign-ready target lists for precision outbound.",
+    resultDe:"Ein gesourctes Mittelstandssegment auf ~50% ICP-passende Firmen qualifiziert; ~43% ansonsten fehlender Senior-Rollen-Profile (CTO) über ein eigenes Anreicherungs-Prompt wiederhergestellt; ~93% Erfolgsquote beim Listen-Import in die Plattform. Ergebnis: saubere, rollensegmentierte, kampagnenfertige Ziellisten für präzises Outbound.",
+    stack:["Clay","TheirStack","HeyReach","Close CRM"] },
+
+  { titleEn:"Multichannel Outbound & Deliverability Engineering", titleDe:"Multichannel-Outbound & Deliverability-Engineering",
+    problemEn:"Outbound needed to run across email and LinkedIn at scale without landing in spam.",
+    problemDe:"Outbound musste über E-Mail und LinkedIn skalieren, ohne im Spam zu landen.",
+    costEn:"Poor deliverability, wasted send volume, brand/domain risk.",
+    costDe:"Schlechte Zustellbarkeit, verschwendetes Sendevolumen, Marken-/Domain-Risiko.",
+    solutionEn:"Stood up email (Smartlead) and LinkedIn (HeyReach) campaigns wired directly to the enrichment engine. Engineered deliverability: added signatures across all sending inboxes, enabled ESP matching, set optimized sending windows, and built a delayed first-touch step after lead arrival. Ran A/B testing across copy variants (long vs. short).",
+    solutionDe:"E-Mail- (Smartlead) und LinkedIn-Kampagnen (HeyReach) aufgesetzt, direkt an die Anreicherungs-Engine angebunden. Deliverability entwickelt: Signaturen über alle Sende-Postfächer hinzugefügt, ESP-Matching aktiviert, optimierte Sendefenster gesetzt und einen verzögerten Erstkontakt nach Lead-Eingang gebaut. A/B-Testing über Copy-Varianten (lang vs. kurz) durchgeführt.",
+    resultEn:"Deliverability controls applied across the full sending infrastructure; A/B testing in place. Outcome: higher-deliverability multichannel outbound with structured message testing.",
+    resultDe:"Deliverability-Kontrollen über die gesamte Sende-Infrastruktur angewendet; A/B-Testing etabliert. Ergebnis: Multichannel-Outbound mit höherer Zustellbarkeit und strukturiertem Message-Testing.",
+    stack:["Smartlead","HeyReach","Clay","Close CRM"] },
+
+  { titleEn:"GTM Unit Economics — Cost & Credit Optimization", titleDe:"GTM-Unit-Economics — Kosten- & Credit-Optimierung",
+    problemEn:"Enrichment/outbound tooling was burning credits through inefficient waterfalls and expensive model calls.",
+    problemDe:"Anreicherungs-/Outbound-Tools verbrannten Credits durch ineffiziente Waterfalls und teure Modell-Aufrufe.",
+    costEn:"Runaway per-lead cost, unsustainable scaling.",
+    costDe:"Ausufernde Kosten pro Lead, nicht nachhaltige Skalierung.",
+    solutionEn:"Audited the enrichment waterfalls and isolated the cost leaks — e.g. a validation setting that forced every downstream waterfall step to fire on a single invalid email. Restructured tables to enrich each company/contact only once, swapped agent models to cheaper GPT variants, moved email/phone enrichment to the lowest-cost provider per step, and added dedup gates before paid enrichment.",
+    solutionDe:"Die Anreicherungs-Waterfalls auditiert und die Kostenlecks isoliert — z. B. eine Validierungseinstellung, die jeden nachgelagerten Waterfall-Schritt bei einer einzigen ungültigen E-Mail auslöste. Tabellen so umgebaut, dass jede Firma/jeder Kontakt nur einmal angereichert wird, Agent-Modelle auf günstigere GPT-Varianten umgestellt, E-Mail-/Telefon-Anreicherung pro Schritt auf den günstigsten Anbieter verlagert und Dedup-Gates vor kostenpflichtiger Anreicherung eingebaut.",
+    resultEn:"Optimizations documented at the workflow-step level. Outcome: materially lower cost-per-enriched-lead while preserving data quality.",
+    resultDe:"Optimierungen auf Workflow-Schritt-Ebene dokumentiert. Ergebnis: deutlich niedrigere Kosten pro angereichertem Lead bei gleichbleibender Datenqualität.",
+    stack:["Clay","BetterContact","OpenAI GPT","Zenrows"] },
+
+  { titleEn:"Backdoor-Detection Revenue-Protection Engine", titleDe:"Backdoor-Detection-Engine zur Umsatzsicherung",
+    problemEn:"Candidates placed through the firm could be hired directly by the client company, bypassing the agency's invoice (\"backdoor\" hires) — silent, hard-to-detect revenue leakage.",
+    problemDe:"Über die Firma vermittelte Kandidaten konnten direkt vom Kundenunternehmen eingestellt werden und so die Rechnung der Agentur umgehen („Backdoor\"-Einstellungen) — stille, schwer erkennbare Umsatzlecks.",
+    costEn:"Unbilled placements and unrecoverable revenue.",
+    costDe:"Nicht abgerechnete Vermittlungen und nicht rückholbarer Umsatz.",
+    solutionEn:"Built an end-to-end detection workflow (candidate profile discovery → resolve current-employer URL → match against client companies across hiring stages). Improved profile-find rates to make matching possible, and fixed a systemic data error where a large batch of records were misassigned to a placeholder company.",
+    solutionDe:"End-to-End-Detection-Workflow gebaut (Kandidaten-Profilfindung → aktuelle Arbeitgeber-URL auflösen → Abgleich gegen Kundenunternehmen über die Hiring-Stages). Profil-Findungsraten verbessert, um das Matching zu ermöglichen, und einen systematischen Datenfehler behoben, bei dem ein großer Batch von Datensätzen einer Platzhalter-Firma falsch zugeordnet war.",
+    resultEn:"Recovered ~41% of otherwise-missing candidate profiles on a secondary professional network via a custom enrichment prompt, materially lifting match coverage; the engine surfaced genuine backdoor cases protecting 20k+ € of at-risk invoice volume. Outcome: converted an invisible leak into a monitored, quantified revenue-protection control.",
+    resultDe:"~41% ansonsten fehlender Kandidatenprofile in einem sekundären Berufsnetzwerk über ein eigenes Anreicherungs-Prompt wiederhergestellt und damit die Match-Abdeckung deutlich erhöht; die Engine deckte echte Backdoor-Fälle auf und schützte 20k+ € an gefährdetem Rechnungsvolumen. Ergebnis: aus einem unsichtbaren Leck eine überwachte, quantifizierte Umsatzsicherungskontrolle gemacht.",
+    stack:["Clay","RecruitCRM","Claygent","LinkedIn / secondary-network enrichment","AI models"] },
+
+  { titleEn:"Large-Scale CRM Data Hygiene, Merge & Recovery", titleDe:"Groß angelegte CRM-Datenhygiene, Merge & Recovery",
+    problemEn:"The CRM had ballooned with empty, duplicate, and low-value records, degrading search, reporting, and outbound quality.",
+    problemDe:"Das CRM war mit leeren, doppelten und geringwertigen Datensätzen aufgebläht, was Suche, Reporting und Outbound-Qualität verschlechterte.",
+    costEn:"Unreliable data, wasted sends, broken reporting.",
+    costDe:"Unzuverlässige Daten, verschwendete Sendungen, kaputtes Reporting.",
+    solutionEn:"Ran a staged cleanup with explicit keep/merge/delete rules (same name+URL → one record; contacts with no name/company deleted; one central phone retained). Built Python + CRM-API scripts to normalize domains, group duplicates, map source→target records, and execute merges safely — with a full pre-cleanup backup first.",
+    solutionDe:"Gestaffelte Bereinigung mit expliziten Keep-/Merge-/Delete-Regeln durchgeführt (gleicher Name + URL → ein Datensatz; Kontakte ohne Name/Firma gelöscht; eine Zentralnummer behalten). Python- + CRM-API-Skripte gebaut, um Domains zu normalisieren, Duplikate zu gruppieren, Quelle→Ziel-Datensätze zu mappen und Merges sicher auszuführen — mit vollständigem Backup vor der Bereinigung.",
+    resultEn:"Materially reduced the lead and contact base by removing empty/duplicate/low-value records; safe, backup-first merges. Outcome: a leaner, deduplicated, reporting-trustworthy CRM.",
+    resultDe:"Lead- und Kontaktbestand durch Entfernen leerer/doppelter/geringwertiger Datensätze deutlich reduziert; sichere Merges mit vorherigem Backup. Ergebnis: ein schlankeres, dedupliziertes, reporting-verlässliches CRM.",
+    stack:["Close CRM","Python","Close REST API"] },
+
+  { titleEn:"Existing-Customer Monitoring System", titleDe:"Bestandskunden-Monitoring-System",
+    problemEn:"No systematic way to detect when existing customers had new hiring needs.",
+    problemDe:"Kein systematischer Weg, um zu erkennen, wann Bestandskunden neuen Recruiting-Bedarf hatten.",
+    costEn:"Missed expansion revenue and slow response to live demand.",
+    costDe:"Verpasstes Expansionsgeschäft und langsame Reaktion auf akute Nachfrage.",
+    solutionEn:"Built a monitoring workflow that enriches customer domains, watches for new relevant signals via a data-provider webhook into Clay, classifies to desired roles/titles only (filtering out irrelevant functions), and routes alerts into the CRM via a dedicated view.",
+    solutionDe:"Monitoring-Workflow gebaut, der Kunden-Domains anreichert, über einen Datenanbieter-Webhook nach Clay auf neue relevante Signale achtet, ausschließlich auf gewünschte Rollen/Titel klassifiziert (irrelevante Funktionen herausfiltert) und Alerts über eine dedizierte Ansicht ins CRM leitet.",
+    resultEn:"Lifted existing-customer URL coverage from ~88% to 100% (full monitorable base). Outcome: turned the existing-customer base into a live, monitored expansion channel.",
+    resultDe:"Die URL-Abdeckung der Bestandskunden von ~88% auf 100% angehoben (vollständig überwachbare Basis). Ergebnis: aus dem Bestandskundenstamm einen aktiv überwachten Expansionskanal gemacht.",
+    stack:["Clay","TheirStack","Close CRM","RecruitCRM"] },
+
+  { titleEn:"Autonomous Campaign-Intelligence Reporting Tool", titleDe:"Autonomes Campaign-Intelligence-Reporting-Tool",
+    problemEn:"Leadership had no automatic, digestible read on how active outbound campaigns were performing.",
+    problemDe:"Der Führung fehlte ein automatischer, verständlicher Überblick über die Performance der aktiven Outbound-Kampagnen.",
+    costEn:"Blind campaign management, slow optimization loops.",
+    costDe:"Blindes Kampagnenmanagement, langsame Optimierungsschleifen.",
+    solutionEn:"Built an autonomous daily intelligence tool using scheduled AI routines, custom skills, and an MCP integration to the outbound platform. It pulls KPIs and 30-day trends, generates concrete optimization recommendations and questions, archives to a repo, and delivers to leadership — with the delivery channel adapted to stakeholder preference.",
+    solutionDe:"Autonomes tägliches Intelligence-Tool gebaut mit geplanten KI-Routinen, eigenen Skills und einer MCP-Integration zur Outbound-Plattform. Es zieht KPIs und 30-Tage-Trends, generiert konkrete Optimierungsempfehlungen und -fragen, archiviert in ein Repository und liefert an die Führung — mit an die Stakeholder-Präferenz angepasstem Zustellkanal.",
+    resultEn:"Fully autonomous daily cadence with 30-day trend + recommendation reporting. Outcome: always-on, decision-ready campaign intelligence with zero manual reporting effort.",
+    resultDe:"Vollständig autonome tägliche Kadenz mit 30-Tage-Trend + Empfehlungs-Reporting. Ergebnis: immer aktuelle, entscheidungsreife Campaign Intelligence ohne manuellen Reporting-Aufwand.",
+    stack:["Claude / Claude Code","MCP","Smartlead","GitHub","Slack / Gmail"] },
+
+  { titleEn:"Automated Financial-Statement Ingestion Pipeline", titleDe:"Automatisierte BWA-/Finanzberichts-Ingestion-Pipeline",
+    problemEn:"Monthly financial statements had to be read and transcribed by hand into planning/dashboard sheets — slow and error-prone.",
+    problemDe:"Monatliche Finanzberichte mussten von Hand gelesen und in Planungs-/Dashboard-Sheets übertragen werden — langsam und fehleranfällig.",
+    costEn:"Manual month-end effort, transcription errors, delayed reporting.",
+    costDe:"Manueller Aufwand zum Monatsabschluss, Übertragungsfehler, verzögertes Reporting.",
+    solutionEn:"Built a deterministic ingestion pipeline: document upload → LLM extraction (temperature 0) → mapped writes into planning and dashboard sheets, with an email approval step. Added multi-format support (PDF/XLSX/XLS/ODS/CSV/Sheets), migrated the notification layer from a chat bot to email-only to cut setup complexity, deployed under a coherent owner identity that survives staffing changes, and hardened filename parsing with a multi-pattern parser plus an LLM fallback.",
+    solutionDe:"Deterministische Ingestion-Pipeline gebaut: Dokument-Upload → LLM-Extraktion (Temperature 0) → gemappte Schreibvorgänge in Planungs- und Dashboard-Sheets, mit E-Mail-Freigabeschritt. Multi-Format-Unterstützung (PDF/XLSX/XLS/ODS/CSV/Sheets) ergänzt, die Benachrichtigungsebene von einem Chat-Bot auf E-Mail-only umgestellt, um Setup-Komplexität zu reduzieren, unter einer kohärenten Owner-Identität deployt, die personelle Wechsel übersteht, und die Dateinamen-Erkennung mit einem Multi-Pattern-Parser plus LLM-Fallback gehärtet.",
+    resultEn:"100% correct processing across the full historical-statement set on verification. Outcome: one-click, verified month-end financial ingestion replacing manual data entry.",
+    resultDe:"Bei der Verifikation 100% korrekte Verarbeitung über den gesamten historischen Berichtssatz. Ergebnis: Ein-Klick-, verifizierte Finanz-Ingestion zum Monatsabschluss statt manueller Dateneingabe.",
+    stack:["Google Apps Script","Claude","Advanced Drive API","Google Sheets"] },
+
+  { titleEn:"Invoice Archiving & Forwarding Automation Suite", titleDe:"Rechnungs-Archivierungs- & Weiterleitungs-Automatisierung",
+    problemEn:"Vendor invoices arrived scattered across mailboxes (many forwarded, vendor often only in the subject line); month-end close required manual collection, filing, and forwarding.",
+    problemDe:"Lieferantenrechnungen kamen über verschiedene Postfächer verstreut an (viele weitergeleitet, Anbieter oft nur im Betreff); der Monatsabschluss erforderte manuelles Sammeln, Ablegen und Weiterleiten.",
+    costEn:"Missed/duplicated invoices, manual overhead, incomplete audit trail.",
+    costDe:"Verpasste/doppelte Rechnungen, manueller Aufwand, unvollständiger Audit-Trail.",
+    solutionEn:"Built a suite of daily Google Apps Script automations: reliable vendor detection via sender/reply-to/recipient/subject; PDF-only guardrails; structured Drive filing with searchable naming; idempotent dedup via labels/stored IDs; and skip-logic to avoid re-processing self-forwarded copies. Extended with additional vendors and multiple forwarding routes with a delayed hand-off.",
+    solutionDe:"Eine Suite täglicher Google-Apps-Script-Automatisierungen gebaut: zuverlässige Anbietererkennung über Absender/Antwort-an/Empfänger/Betreff; PDF-only-Guardrails; strukturierte Drive-Ablage mit durchsuchbarer Benennung; idempotente Deduplizierung über Labels/gespeicherte IDs; und Skip-Logik, um selbst weitergeleitete Kopien nicht erneut zu verarbeiten. Erweitert um weitere Anbieter und mehrere Weiterleitungsrouten mit verzögerter Übergabe.",
+    resultEn:"100%-deduplicated processing (each invoice handled exactly once); fully unattended daily runs. Outcome: a clean, deduplicated, searchable invoice trail with near-zero manual handling.",
+    resultDe:"100% deduplizierte Verarbeitung (jede Rechnung genau einmal); vollständig unbeaufsichtigte tägliche Läufe. Ergebnis: ein sauberer, deduplizierter, durchsuchbarer Rechnungs-Trail mit nahezu null manueller Bearbeitung.",
+    stack:["Google Apps Script","Gmail","Google Drive","Qonto"] },
+
+  { titleEn:"GTM Strategy, Roadmap & Implementation Planning", titleDe:"GTM-Strategie, Roadmap & Umsetzungsplanung",
+    problemEn:"GTM initiatives lacked a unifying architecture, sequencing, and cost model.",
+    problemDe:"Den GTM-Initiativen fehlten eine verbindende Architektur, Priorisierung und ein Kostenmodell.",
+    costEn:"Fragmented efforts, unclear priorities, duplicated spend.",
+    costDe:"Fragmentierte Bemühungen, unklare Prioritäten, doppelte Ausgaben.",
+    solutionEn:"Authored a multi-infrastructure GTM roadmap, a phased implementation plan with timeline and a tool-cost overview, and reviewed the full funnel (ToFu/MoFu/BoFu) and customer-journey model. Owned quarterly OKRs across the function and drove alignment through recurring planning syncs.",
+    solutionDe:"Eine Multi-Infrastruktur-GTM-Roadmap, einen phasierten Umsetzungsplan mit Zeitplan und einer Tool-Kostenübersicht erstellt sowie den gesamten Funnel (ToFu/MoFu/BoFu) und das Customer-Journey-Modell reviewt. Quartals-OKRs über die Funktion verantwortet und Alignment über wiederkehrende Planungs-Syncs vorangetrieben.",
+    resultEn:"Multi-infrastructure roadmap and phased, costed implementation plan. Outcome: a coherent, sequenced, costed GTM plan aligned across the team.",
+    resultDe:"Multi-Infrastruktur-Roadmap und phasierter, kalkulierter Umsetzungsplan. Ergebnis: ein kohärenter, sequenzierter, kalkulierter GTM-Plan mit teamweitem Alignment.",
+    stack:["Notion","Miro","Google Workspace","Loom"] },
+
+  { titleEn:"AI Content Co-pilot for the Inbound Motion", titleDe:"KI-Content-Co-Pilot für die Inbound-Bewegung",
+    problemEn:"The inbound motion needed consistent, on-brand content produced at speed to feed top-of-funnel demand.",
+    problemDe:"Die Inbound-Bewegung brauchte konsistenten, markenkonformen Content, schnell produziert, um die Top-of-Funnel-Nachfrage zu speisen.",
+    costEn:"Slow, inconsistent content output limiting inbound pipeline.",
+    costDe:"Langsame, inkonsistente Content-Ausgabe, die die Inbound-Pipeline begrenzt.",
+    solutionEn:"Built an AI content co-pilot that powers content creation for the inbound motion — generating on-brand long- and short-form content with brand-voice controls and anti-repetition logic, so the team can produce publishable content consistently.",
+    solutionDe:"Einen KI-Content-Co-Piloten gebaut, der die Content-Erstellung für die Inbound-Bewegung antreibt — er generiert markenkonformen Lang- und Kurzform-Content mit Brand-Voice-Kontrollen und Anti-Wiederholungs-Logik, sodass das Team konsistent veröffentlichungsreifen Content produzieren kann.",
+    resultEn:"Reusable AI content engine live for the inbound motion. Outcome: faster, consistent, on-brand content production feeding the inbound funnel.",
+    resultDe:"Wiederverwendbare KI-Content-Engine live für die Inbound-Bewegung. Ergebnis: schnellere, konsistente, markenkonforme Content-Produktion, die den Inbound-Funnel speist.",
+    stack:["Claude / Claude Code","Custom skills"] },
+
+  { titleEn:"CRM & Workspace Architecture (ATS + Knowledge Hubs)", titleDe:"CRM- & Workspace-Architektur (ATS + Wissens-Hubs)",
+    problemEn:"The ATS and workspace lacked a coherent single-source-of-truth structure, automated stage logic, and usable views.",
+    problemDe:"Dem ATS und Workspace fehlten eine kohärente Single-Source-of-Truth-Struktur, automatisierte Stage-Logik und nutzbare Ansichten.",
+    costEn:"Manual stage management, inconsistent data, low adoption.",
+    costDe:"Manuelles Stage-Management, inkonsistente Daten, geringe Adoption.",
+    solutionEn:"Re-architected the CRM/ATS — pipeline↔deal-stage sync, automatic deal creation on stage change, standardized data fields, corrected deal-value logic, and a restructured lead-status model (renamed/merged statuses, automated status transitions on won/lost/opportunity). Built recruiting, ops, and marketing hubs in Notion with relations/rollups, template automations, lexicographic task ordering, and an onboarding walkthrough video.",
+    solutionDe:"Das CRM/ATS neu architektiert — Pipeline↔Deal-Stage-Sync, automatische Deal-Erstellung bei Stage-Wechsel, standardisierte Datenfelder, korrigierte Deal-Value-Logik und ein umstrukturiertes Lead-Status-Modell (umbenannte/gemergte Statuses, automatisierte Status-Übergänge bei Won/Lost/Opportunity). Recruiting-, Ops- und Marketing-Hubs in Notion mit Relations/Rollups, Template-Automationen, lexikografischer Aufgaben-Sortierung und einem Onboarding-Walkthrough-Video gebaut.",
+    resultEn:"Full status-model redesign; multi-hub Notion build with automated stage-driven task surfacing. Outcome: a structured, largely self-driving CRM/workspace that behaves as the single source of truth.",
+    resultDe:"Komplettes Status-Modell-Redesign; Multi-Hub-Notion-Aufbau mit automatisiertem, stage-gesteuertem Aufgaben-Surfacing. Ergebnis: ein strukturiertes, weitgehend selbstlaufendes CRM/Workspace, das als Single Source of Truth fungiert.",
+    stack:["RecruitCRM","Close CRM","Notion","Airtable","Make"] },
+
+  { titleEn:"Marketing-Ops & Lead-Capture Automation", titleDe:"Marketing-Ops & Lead-Capture-Automatisierung",
+    problemEn:"Inbound lead-capture and content flows were broken or manual (duplicate sends, failed hand-offs, third-party bottlenecks).",
+    problemDe:"Inbound-Lead-Capture- und Content-Flows waren defekt oder manuell (Doppelversand, fehlgeschlagene Übergaben, Drittanbieter-Engpässe).",
+    costEn:"Lost leads, duplicate outreach, silent failures.",
+    costDe:"Verlorene Leads, doppelte Ansprache, stille Fehler.",
+    solutionEn:"Built a masterclass access automation — an interested prospect fills a form and automatically receives a link with a personalized password granting access to the masterclass (form → orchestration → credential generation → gated access). Also repaired multiple broken lead-magnet flows and a duplicate-send bug, recovered a long-dead job-import integration, and re-engineered a candidate-intake pipeline by removing a paid third-party middleman in favor of direct API calls with error-alerting so no lead is ever silently lost.",
+    solutionDe:"Eine Masterclass-Zugangs-Automatisierung gebaut — ein interessierter Interessent füllt ein Formular aus und erhält automatisch einen Link mit personalisiertem Passwort für den Zugang zur Masterclass (Formular → Orchestrierung → Zugangsdaten-Generierung → gesicherter Zugang). Außerdem mehrere defekte Lead-Magnet-Flows und einen Doppelversand-Bug behoben, eine lange tote Job-Import-Integration wiederhergestellt und eine Kandidaten-Intake-Pipeline neu gebaut, indem ein kostenpflichtiger Drittanbieter-Mittelsmann durch direkte API-Calls mit Fehler-Alerting ersetzt wurde, sodass nie wieder ein Lead still verloren geht.",
+    resultEn:"Candidate-intake redesign added zero incremental cost (removed a paid third-party dependency) and eliminated silent lead loss via automatic error alerts. Outcome: reliable, self-healing lead capture with no silent failures and no unnecessary vendor spend.",
+    resultDe:"Der Kandidaten-Intake-Redesign verursachte null Zusatzkosten (kostenpflichtige Drittanbieter-Abhängigkeit entfernt) und eliminierte stillen Lead-Verlust durch automatische Fehler-Alerts. Ergebnis: zuverlässige, sich selbst heilende Lead-Erfassung ohne stille Fehler und ohne unnötige Anbieterkosten.",
+    stack:["Tally","Make","Zapier","Google Apps Script","WordPress/PHP","Webflow","RecruitCRM","0CodeKit"] },
+
+  { titleEn:"Technical Onboarding & Team Enablement", titleDe:"Technisches Onboarding & Team-Enablement",
+    problemEn:"New hires needed reliable technical onboarding, and the team needed coaching to actually adopt the recruiting workspace.",
+    problemDe:"Neue Mitarbeiter brauchten ein zuverlässiges technisches Onboarding, und das Team brauchte Coaching, um den Recruiting-Workspace tatsächlich zu nutzen.",
+    costEn:"Slow ramp, tool underutilization, dependency bottlenecks.",
+    costDe:"Langsames Einarbeiten, Tool-Unterauslastung, Abhängigkeits-Engpässe.",
+    solutionEn:"Ran full technical onboarding for new hires (devices, accounts, email/Slack/CRM setup, mobile/telephony verification) and coached the team on the Notion recruiting hub through live test runs, Looms, and playbooks — building durable process documentation.",
+    solutionDe:"Vollständiges technisches Onboarding für neue Mitarbeiter durchgeführt (Geräte, Accounts, E-Mail-/Slack-/CRM-Setup, Mobil-/Telefonie-Verifikation) und das Team am Notion-Recruiting-Hub gecoacht — über Live-Testläufe, Looms und Playbooks, samt belastbarer Prozessdokumentation.",
+    resultEn:"End-to-end technical onboarding delivered; team coached on the recruiting hub. Outcome: faster ramp and higher tool adoption across the team.",
+    resultDe:"End-to-End-technisches Onboarding geliefert; Team am Recruiting-Hub gecoacht. Ergebnis: schnelleres Einarbeiten und höhere Tool-Adoption im Team.",
+    stack:["Google Workspace","Slack","Close CRM","Notion","Loom"] }
+];
+
+const TOOL_GROUPS = [
+  { labelEn:"Build and Code", labelDe:"Build und Code", tools:["Python","JavaScript","TypeScript","React","SQL","R","Java","HTML/CSS","Git","GitHub Actions","Google Apps Script","Docker"] },
+  { labelEn:"GTM and Outreach", labelDe:"GTM und Outreach", tools:["Clay","Smartlead","HeyReach","Apollo","Lusha","BetterContact","TheirStack","Close CRM","HubSpot","RecruitCRM","Gamma API","LinkedIn Recruiter"] },
+  { labelEn:"AI and Automation", labelDe:"KI und Automatisierung", tools:["Claude","Claude Code","OpenAI GPT","Make","Zapier","Webhooks","REST APIs","MCP","Claygent","Autonomous agent routines"] },
+  { labelEn:"Data and Intelligence", labelDe:"Daten und Intelligence", tools:["SQLite","Supabase","Airtable","Notion","Metricool","Zenrows","0CodeKit"] },
+  { labelEn:"Workspace and Ops", labelDe:"Workspace und Ops", tools:["Google Workspace","Slack","Miro","Loom","Qonto","1Password"] },
+  { labelEn:"Languages", labelDe:"Sprachen", tools:["Hindi (native)","English (native)","Deutsch C1","Español (learning)","Bengali (spoken)"] }
+];
+
+const PRINCIPLES = [
+  { titleEn:"Mission over passion.", titleDe:"Mission statt Leidenschaft.",
+    bodyEn:"Passion is about you. Mission is about the world. The moment I stopped asking what I wanted and started asking what the world needed, my work became sharper, harder, and more meaningful. I do not follow passion. I lead missions.",
+    bodyDe:"Leidenschaft dreht sich um dich. Mission dreht sich um die Welt. In dem Moment, in dem ich aufgehört habe zu fragen, was ich will, und angefangen habe zu fragen, was die Welt braucht, wurde meine Arbeit schärfer, schwieriger und bedeutungsvoller. Ich folge keiner Leidenschaft. Ich führe Missionen." },
+  { titleEn:"Prioritisation is the only real time management.", titleDe:"Priorisierung ist das einzige echte Zeitmanagement.",
+    bodyEn:"There is no such thing as not having time for something. There is only not making it a priority. I apply the Pareto Principle relentlessly — protect the 20% of actions that drive 80% of outcomes, and automate, delegate, reschedule, or delete everything else. This is also how I architect GTM systems.",
+    bodyDe:"Es gibt kein „keine Zeit haben\". Es gibt nur „es nicht priorisieren\". Ich wende das Pareto-Prinzip konsequent an — die 20% schützen, die 80% der Ergebnisse erzeugen, und alles andere automatisieren, delegieren oder streichen. So architektiere ich auch GTM-Systeme." },
+  { titleEn:"Do it now.", titleDe:"Tu es jetzt.",
+    bodyEn:"The gap between where most people are and where they want to be is not talent or resources. It is the distance between deciding and doing. As a leader and builder I close that gap as fast as possible, every time.",
+    bodyDe:"Der Abstand zwischen dem, wo die meisten Menschen sind, und dem, wo sie sein wollen, ist kein Talent- oder Ressourcenproblem. Es ist der Abstand zwischen Entscheiden und Handeln. Als Leader und Builder schließe ich diesen Abstand so schnell wie möglich — jedes Mal." },
+  { titleEn:"Impatience with actions. Patience with results.", titleDe:"Ungeduld bei Handlungen. Geduld bei Ergebnissen.",
+    bodyEn:"I control what I do — not what happens next. So I act fast, completely, with everything I have. And then I trust the compounding. The results take the time they take. The actions never do.",
+    bodyDe:"Ich kontrolliere, was ich tue — nicht was als Nächstes passiert. Also handle ich schnell, vollständig, mit allem was ich habe. Und dann vertraue ich dem Compounding. Die Ergebnisse brauchen die Zeit, die sie brauchen. Die Handlungen nie." },
+  { titleEn:"Progress over perfection. Every single day.", titleDe:"Fortschritt statt Perfektion. Jeden einzelnen Tag.",
+    bodyEn:"The best GTM leaders ship, measure, and iterate — not plan, polish, and wait. Perfection stops more good work from existing than failure ever has. I believe in atomic progress. Consistency over brilliance, always.",
+    bodyDe:"Die besten GTM Leader shippen, messen und iterieren — sie planen nicht endlos. Perfektion verhindert mehr gute Arbeit als Scheitern je getan hat. Ich glaube an atomaren Fortschritt. Beständigkeit über Brillanz, immer." },
+  { titleEn:"Deep focus over fragmented attention.", titleDe:"Tiefer Fokus statt fragmentierter Aufmerksamkeit.",
+    bodyEn:"The ability to focus deeply on one problem for extended periods is one of the rarest capabilities a leader can have. I protect it deliberately. One architectural challenge at a time. Complete immersion. Then the next.",
+    bodyDe:"Die Fähigkeit, sich tief auf ein Problem zu konzentrieren, ist eine der seltensten Fähigkeiten, die ein Leader haben kann. Ich schütze sie bewusst. Eine architektonische Herausforderung nach der anderen. Vollständige Immersion. Dann das Nächste." },
+  { titleEn:"Build first. Talk second.", titleDe:"Erst bauen. Dann reden.",
+    bodyEn:"The world already has enough people announcing GTM strategies. The leaders who matter ship them. I build first, then share what I learned. Every system on this page was finished before most people knew I was building it.",
+    bodyDe:"Die Welt hat bereits genug Menschen, die GTM-Strategien ankündigen. Die Leader, die zählen, bauen sie. Ich baue zuerst, dann teile ich, was ich gelernt habe. Jedes System auf dieser Seite war fertig, bevor die meisten wussten, dass ich es baue." },
+  { titleEn:"Long-term thinking. Always.", titleDe:"Langfristiges Denken. Immer.",
+    bodyEn:"I am not optimising for this quarter. I am building category-defining revenue infrastructure for the decade. Every decision I make, I ask — does this compound? The world belongs to those who stay in the game long enough.",
+    bodyDe:"Ich optimiere nicht für dieses Quartal. Ich baue kategorieprägende Revenue-Infrastruktur für das Jahrzehnt. Bei jeder Entscheidung frage ich — wächst das? Die Welt gehört denen, die lange genug im Spiel bleiben." },
+  { titleEn:"Life is short. Lead it intentionally.", titleDe:"Das Leben ist kurz. Führe es bewusst.",
+    bodyEn:"Too short to follow someone else's playbook. Too short to optimise for metrics that do not matter. I say no to almost everything so I can say yes completely to the work and the people that are worth it.",
+    bodyDe:"Zu kurz, um das Playbook von jemand anderem zu befolgen. Zu kurz, um für bedeutungslose Metriken zu optimieren. Ich sage zu fast allem Nein, damit ich zu der Arbeit und den Menschen, die es wert sind, vollständig Ja sagen kann." },
+  { titleEn:"Protect what cannot be recovered.", titleDe:"Schütze, was nicht wiedererlangt werden kann.",
+    bodyEn:"Three things, once lost, are gone forever — time, health, and the people you love. I lead my life and my work with all three in mind. This is not a value I display. It is one I guard.",
+    bodyDe:"Drei Dinge, einmal verloren, sind für immer weg — Zeit, Gesundheit und die Menschen, die man liebt. Ich führe mein Leben und meine Arbeit mit allen dreien im Blick. Das ist kein Wert, den ich zeige. Es ist einer, den ich schütze." },
+  { titleEn:"Nothing is the end of the world.", titleDe:"Nichts ist das Ende der Welt.",
+    bodyEn:"The best leaders stay calm when systems break, deals fall through, and strategies fail. Most setbacks are forgotten within a week. Stay calm. Stay in motion. Keep building.",
+    bodyDe:"Die besten Leader bleiben ruhig, wenn Systeme brechen, Deals scheitern und Strategien versagen. Die meisten Rückschläge sind binnen einer Woche vergessen. Ruhig bleiben. In Bewegung bleiben. Weiterbauen." },
+  { titleEn:"Take care of your energy like your systems.", titleDe:"Pflege deine Energie wie deine Systeme.",
+    bodyEn:"You cannot lead well from an empty tank. Rest is not laziness — it is maintenance. I take care of my energy the same way I take care of the systems I build — intentionally, proactively, before degradation sets in.",
+    bodyDe:"Man kann nicht gut führen aus einem leeren Tank. Ruhe ist keine Faulheit — sie ist Wartung. Ich pflege meine Energie genauso wie die Systeme, die ich baue — bewusst, proaktiv, bevor der Verfall einsetzt." },
+  { titleEn:"Shift the focus from yourself to the world.", titleDe:"Verlagere den Fokus von dir selbst auf die Welt.",
+    bodyEn:"The deepest source of sustained leadership energy I have ever found is not self-improvement for its own sake. It is the question — what does the world need that I am uniquely positioned to build? When that question drives the work, the work never feels like work.",
+    bodyDe:"Die tiefste Quelle nachhaltiger Führungsenergie, die ich je gefunden habe, ist die Frage — was braucht die Welt, das ich einzigartig bauen kann? Wenn diese Frage die Arbeit antreibt, fühlt sich die Arbeit nie wie Arbeit an." }
+];
+
+/* ================= RENDER ================= */
+
+let currentLang = 'en';
+
+function renderStaticI18n(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key] !== undefined) {
+      el.textContent = translations[lang][key];
+    }
+  });
+}
+
+function renderProjects(lang) {
+  const grid = document.getElementById('project-grid');
+  const t = translations[lang];
+  grid.innerHTML = PROJECTS.map(p => `
+    <div class="project-card">
+      <h3>${lang === 'en' ? p.titleEn : p.titleDe}</h3>
+      <div class="project-row">
+        <span class="label mono">${t.labelProblem}</span>
+        <span class="value">${lang === 'en' ? p.problemEn : p.problemDe}</span>
+      </div>
+      <div class="project-row">
+        <span class="label mono">${t.labelCost}</span>
+        <span class="value">${lang === 'en' ? p.costEn : p.costDe}</span>
+      </div>
+      <div class="project-row">
+        <span class="label mono">${t.labelSolution}</span>
+        <span class="value">${lang === 'en' ? p.solutionEn : p.solutionDe}</span>
+      </div>
+      <div class="project-row">
+        <span class="label mono">${t.labelResult}</span>
+        <span class="value">${lang === 'en' ? p.resultEn : p.resultDe}</span>
+      </div>
+      <div class="project-row">
+        <span class="label mono">${t.labelStack}</span>
+        <span class="value stack-value">${p.stack.join(' · ')}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTools(lang) {
+  const grid = document.getElementById('tools-grid');
+  grid.innerHTML = TOOL_GROUPS.map(g => `
+    <div class="tool-group">
+      <div class="tool-group-label mono">${lang === 'en' ? g.labelEn : g.labelDe}</div>
+      <div class="tool-list">${g.tools.join(' · ')}</div>
+    </div>
+  `).join('');
+}
+
+function renderPrinciples(lang) {
+  const grid = document.getElementById('principles-grid');
+  grid.innerHTML = PRINCIPLES.map(p => `
+    <div class="principle-card">
+      <h4>${lang === 'en' ? p.titleEn : p.titleDe}</h4>
+      <p>${lang === 'en' ? p.bodyEn : p.bodyDe}</p>
+    </div>
+  `).join('');
+}
+
+function renderAll(lang) {
+  renderStaticI18n(lang);
+  renderProjects(lang);
+  renderTools(lang);
+  renderPrinciples(lang);
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+  renderAll(lang);
+}
+
+/* ================= TERMINAL TYPING ================= */
+
+const TERMINAL_LINES = [
+  { text: "shuvadarshan.bhual --mode gtm-architect", cls: "line-1" },
+  { text: "Loading: 9 years old. First line of code. Never stopped.", cls: "" },
+  { text: "Status: Building revenue infrastructure that compounds.", cls: "" }
+];
+
+function typeTerminal() {
+  const el = document.getElementById('terminal');
+  let lineIdx = 0, charIdx = 0;
+  const speed = 40;
+
+  function typeChar() {
+    if (lineIdx >= TERMINAL_LINES.length) {
+      el.innerHTML += '<span class="cursor"></span>';
+      revealHero();
+      return;
+    }
+    const line = TERMINAL_LINES[lineIdx];
+    if (charIdx === 0) {
+      el.innerHTML += `<div class="${line.cls}"></div>`;
+    }
+    const lineEls = el.children;
+    const target = lineEls[lineEls.length - 1];
+    target.textContent = line.text.slice(0, charIdx + 1);
+    charIdx++;
+    if (charIdx >= line.text.length) {
+      lineIdx++;
+      charIdx = 0;
+      setTimeout(typeChar, speed * 6);
+    } else {
+      setTimeout(typeChar, speed);
+    }
+  }
+  typeChar();
+}
+
+function revealHero() {
+  document.getElementById('hero-content').classList.add('visible');
+}
+
+/* ================= STAT COUNTERS ================= */
+
+function animateCount(el) {
+  const target = parseInt(el.getAttribute('data-count'), 10);
+  const duration = 1400;
+  const start = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    el.textContent = Math.floor(progress * target);
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = target;
+    }
+  }
+  requestAnimationFrame(tick);
+}
+
+function setupStatObserver() {
+  const stats = document.querySelectorAll('.stat-num');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = "true";
+        animateCount(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  stats.forEach(s => observer.observe(s));
+}
+
+/* ================= NAV SCROLL ================= */
+
+function setupNavScroll() {
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  });
+}
+
+/* ================= INIT ================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderAll(currentLang);
+  typeTerminal();
+  setupStatObserver();
+  setupNavScroll();
+});
+</script>
+</body>
+</html>
