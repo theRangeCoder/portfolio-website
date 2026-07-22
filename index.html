@@ -224,11 +224,56 @@
     font-size: 15px;
   }
 
+  /* ---------- IMPACT STRIP ---------- */
+  .impact-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
+    margin-bottom: 56px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .impact-stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .impact-stat-label {
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* ---------- FILTER BAR ---------- */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .filter-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    padding: 9px 15px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .filter-btn:hover { color: var(--text-primary); border-color: var(--text-muted); }
+  .filter-btn.active { color: var(--accent); border-color: var(--accent); }
+
   /* ---------- PROJECTS ---------- */
   .project-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
+    align-items: start;
   }
   .project-card {
     background: var(--surface-raised);
@@ -236,12 +281,48 @@
     border-left: 3px solid var(--accent);
     padding: 28px 32px;
   }
+  .project-card-head { cursor: pointer; }
   .project-card h3 {
     font-size: 17px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     color: var(--text-primary);
   }
+  .project-pillar-tag {
+    font-size: 10.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .project-hook {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  .project-toggle {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    padding: 0;
+    margin-top: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .project-toggle .chevron { display: inline-block; transition: transform 0.2s ease; }
+  .project-card.expanded .project-toggle .chevron { transform: rotate(90deg); }
+  .project-detail {
+    display: none;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
+  }
+  .project-card.expanded .project-detail { display: block; }
   .project-row { margin-bottom: 16px; }
   .project-row:last-child { margin-bottom: 0; }
   .project-row .label {
@@ -262,6 +343,56 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     color: var(--text-primary);
+  }
+
+  /* ---------- PIPELINE DIAGRAM ---------- */
+  .pipeline-diagram {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 32px;
+  }
+  .pipeline-node {
+    background: var(--surface-raised);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+  }
+  .pipeline-node:hover { border-color: var(--text-muted); }
+  .pipeline-node.active { border-color: var(--accent); background: rgba(200, 240, 77, 0.07); }
+  .pipeline-node .step-num { font-size: 12px; color: var(--accent); }
+  .pipeline-node .step-name { font-size: 12.5px; color: var(--text-primary); max-width: 168px; line-height: 1.3; }
+  .pipeline-connector {
+    color: var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0 8px;
+    flex: 0 0 auto;
+  }
+  .pipeline-detail {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 26px 30px;
+    min-height: 96px;
+  }
+  .pipeline-detail .step-title {
+    color: var(--accent);
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .pipeline-detail p {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.6;
   }
 
   /* ---------- TOOLS ---------- */
@@ -346,12 +477,17 @@
     .tools-grid { grid-template-columns: 1fr; }
     .principles-grid { grid-template-columns: 1fr; }
     .stats { grid-template-columns: 1fr; gap: 36px; }
+    .impact-strip { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 480px) {
     section { padding: 80px 0; }
     .hero { padding-top: 56px; padding-bottom: 64px; }
     .terminal { padding: 20px; font-size: 12.5px; }
     .project-card, .principle-card { padding: 22px 20px; }
+    .impact-strip { grid-template-columns: 1fr 1fr; }
+    .pipeline-node { width: 100%; }
+    .pipeline-connector { display: none; }
+    .pipeline-detail { padding: 20px; }
   }
 </style>
 </head>
@@ -425,7 +561,20 @@
       <h2 data-i18n="projectsHeadline"></h2>
       <p data-i18n="projectsSub"></p>
     </div>
+    <div class="impact-strip" id="impact-strip"></div>
+    <div class="filter-bar" id="filter-bar"></div>
     <div class="project-grid" id="project-grid"></div>
+  </div>
+</section>
+
+<section id="pipeline">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="pipelineHeadline"></h2>
+      <p data-i18n="pipelineSub"></p>
+    </div>
+    <div class="pipeline-diagram" id="pipeline-diagram"></div>
+    <div class="pipeline-detail" id="pipeline-detail"></div>
   </div>
 </section>
 
@@ -496,6 +645,12 @@ const translations = {
     labelSolution: "What I Built",
     labelResult: "Result and Impact",
     labelStack: "Stack",
+    readMore: "Read the full case study",
+    readLess: "Show less",
+    filterAll: "All",
+
+    pipelineHeadline: "Inside one system, step by step.",
+    pipelineSub: "A closer look at how the End-to-End Lead Enrichment & Outbound Engine actually runs — the same 40+ step pipeline referenced in the case study above. Click a step to see what it does.",
 
     toolsHeadline: "The stack. Led, built, and owned end to end.",
     toolsSub: "Every tool below is something I have architected systems around, integrated from scratch, or built on top of at the infrastructure level. Not things I have read about.",
@@ -533,6 +688,12 @@ const translations = {
     labelSolution: "Was Ich Gebaut Habe",
     labelResult: "Ergebnis und Wirkung",
     labelStack: "Stack",
+    readMore: "Vollständige Case Study lesen",
+    readLess: "Weniger anzeigen",
+    filterAll: "Alle",
+
+    pipelineHeadline: "Ein System im Detail, Schritt für Schritt.",
+    pipelineSub: "Ein genauerer Blick darauf, wie die End-to-End Lead-Anreicherungs- & Outbound-Engine tatsächlich läuft — dieselbe 40+ Schritte umfassende Pipeline aus der Case Study oben. Klicke auf einen Schritt, um zu sehen, was er tut.",
 
     toolsHeadline: "Der Stack. Geführt, gebaut und end-to-end verantwortet.",
     toolsSub: "Jedes Tool unten ist etwas, um das ich Systeme architektiert, von Grund auf integriert oder auf Infrastrukturebene weitergebaut habe. Keine Tools, über die ich nur gelesen habe.",
@@ -548,8 +709,25 @@ const translations = {
   }
 };
 
+const PILLARS = [
+  { id: "A", labelEn: "Revenue Operations & Pipeline Infrastructure", labelDe: "Revenue Operations & Pipeline-Infrastruktur" },
+  { id: "B", labelEn: "Revenue Protection & Data Integrity", labelDe: "Umsatzsicherung & Datenintegrität" },
+  { id: "C", labelEn: "Customer Intelligence & Retention", labelDe: "Customer Intelligence & Kundenbindung" },
+  { id: "D", labelEn: "Finance & Back-Office Automation", labelDe: "Finanz- & Back-Office-Automatisierung" },
+  { id: "E", labelEn: "GTM Strategy & Enablement", labelDe: "GTM-Strategie & Enablement" },
+  { id: "F", labelEn: "CRM Architecture, Systems & Enablement", labelDe: "CRM-Architektur, Systeme & Enablement" }
+];
+
+const IMPACT_STATS = [
+  { value: "15", labelEn: "systems designed, architected, and built end-to-end", labelDe: "end-to-end entworfene, architektierte und gebaute Systeme" },
+  { value: "40+", labelEn: "steps in a single enrichment pipeline", labelDe: "Schritte in einer einzigen Anreicherungs-Pipeline" },
+  { value: "83%", labelEn: "of a lead set enriched with industry tags", labelDe: "eines Lead-Sets mit Industrie-Tags angereichert" },
+  { value: "20k+ €", labelEn: "at-risk invoice volume protected by one detection engine", labelDe: "gefährdetes Rechnungsvolumen durch eine Detection-Engine geschützt" },
+  { value: "100%", labelEn: "verified accuracy on financial-statement ingestion", labelDe: "verifizierte Genauigkeit bei der Finanzberichts-Ingestion" }
+];
+
 const PROJECTS = [
-  { titleEn:"End-to-End Lead Enrichment & Outbound Engine", titleDe:"End-to-End Lead-Anreicherungs- & Outbound-Engine",
+  { pillar:"A", titleEn:"End-to-End Lead Enrichment & Outbound Engine", titleDe:"End-to-End Lead-Anreicherungs- & Outbound-Engine",
     problemEn:"Company & contact data was incomplete, duplicated, and unusable for outbound; there was no repeatable path from a raw job/company signal to an enriched, CRM-ready decision-maker.",
     problemDe:"Firmen- und Kontaktdaten waren unvollständig, dupliziert und für Outbound unbrauchbar; es gab keinen wiederholbaren Weg von einem rohen Job-/Firmensignal zu einem angereicherten, CRM-fertigen Entscheidungsträger.",
     costEn:"Sales working off bad data, wasted enrichment spend, no scalable pipeline.",
@@ -560,7 +738,7 @@ const PROJECTS = [
     resultDe:"~83% eines verarbeiteten Lead-Sets mit Industrie-Tags angereichert, nachdem ~17% als Duplikate entfernt wurden; zusätzlich eine Reihe von Firmen-URLs zu null Anreicherungskosten wiederhergestellt. Ergebnis: eine wiederholbare, deduplizierte Anreicherungsmaschine, die saubere, CRM-fertige Entscheidungsträger in den Funnel speist.",
     stack:["Clay","Close CRM","RecruitCRM","BetterContact","Lusha","Apollo","Claygent","REST APIs"] },
 
-  { titleEn:"ICP Definition & Multi-Segment Target-List Construction", titleDe:"ICP-Definition & Multi-Segment-Ziellistenaufbau",
+  { pillar:"A", titleEn:"ICP Definition & Multi-Segment Target-List Construction", titleDe:"ICP-Definition & Multi-Segment-Ziellistenaufbau",
     problemEn:"Outbound lacked sharply defined, enriched, segment-specific target lists aligned to the company's ideal customer profiles.",
     problemDe:"Dem Outbound fehlten scharf definierte, angereicherte, segmentspezifische Ziellisten, die auf die idealen Kundenprofile des Unternehmens ausgerichtet waren.",
     costEn:"Diluted messaging, low reply rates, wasted rep time on poor-fit accounts.",
@@ -571,7 +749,7 @@ const PROJECTS = [
     resultDe:"Ein gesourctes Mittelstandssegment auf ~50% ICP-passende Firmen qualifiziert; ~43% ansonsten fehlender Senior-Rollen-Profile (CTO) über ein eigenes Anreicherungs-Prompt wiederhergestellt; ~93% Erfolgsquote beim Listen-Import in die Plattform. Ergebnis: saubere, rollensegmentierte, kampagnenfertige Ziellisten für präzises Outbound.",
     stack:["Clay","TheirStack","HeyReach","Close CRM"] },
 
-  { titleEn:"Multichannel Outbound & Deliverability Engineering", titleDe:"Multichannel-Outbound & Deliverability-Engineering",
+  { pillar:"A", titleEn:"Multichannel Outbound & Deliverability Engineering", titleDe:"Multichannel-Outbound & Deliverability-Engineering",
     problemEn:"Outbound needed to run across email and LinkedIn at scale without landing in spam.",
     problemDe:"Outbound musste über E-Mail und LinkedIn skalieren, ohne im Spam zu landen.",
     costEn:"Poor deliverability, wasted send volume, brand/domain risk.",
@@ -582,7 +760,7 @@ const PROJECTS = [
     resultDe:"Deliverability-Kontrollen über die gesamte Sende-Infrastruktur angewendet; A/B-Testing etabliert. Ergebnis: Multichannel-Outbound mit höherer Zustellbarkeit und strukturiertem Message-Testing.",
     stack:["Smartlead","HeyReach","Clay","Close CRM"] },
 
-  { titleEn:"GTM Unit Economics — Cost & Credit Optimization", titleDe:"GTM-Unit-Economics — Kosten- & Credit-Optimierung",
+  { pillar:"A", titleEn:"GTM Unit Economics — Cost & Credit Optimization", titleDe:"GTM-Unit-Economics — Kosten- & Credit-Optimierung",
     problemEn:"Enrichment/outbound tooling was burning credits through inefficient waterfalls and expensive model calls.",
     problemDe:"Anreicherungs-/Outbound-Tools verbrannten Credits durch ineffiziente Waterfalls und teure Modell-Aufrufe.",
     costEn:"Runaway per-lead cost, unsustainable scaling.",
@@ -593,7 +771,7 @@ const PROJECTS = [
     resultDe:"Optimierungen auf Workflow-Schritt-Ebene dokumentiert. Ergebnis: deutlich niedrigere Kosten pro angereichertem Lead bei gleichbleibender Datenqualität.",
     stack:["Clay","BetterContact","OpenAI GPT","Zenrows"] },
 
-  { titleEn:"Backdoor-Detection Revenue-Protection Engine", titleDe:"Backdoor-Detection-Engine zur Umsatzsicherung",
+  { pillar:"B", titleEn:"Backdoor-Detection Revenue-Protection Engine", titleDe:"Backdoor-Detection-Engine zur Umsatzsicherung",
     problemEn:"Candidates placed through the firm could be hired directly by the client company, bypassing the agency's invoice (\"backdoor\" hires) — silent, hard-to-detect revenue leakage.",
     problemDe:"Über die Firma vermittelte Kandidaten konnten direkt vom Kundenunternehmen eingestellt werden und so die Rechnung der Agentur umgehen („Backdoor\"-Einstellungen) — stille, schwer erkennbare Umsatzlecks.",
     costEn:"Unbilled placements and unrecoverable revenue.",
@@ -604,7 +782,7 @@ const PROJECTS = [
     resultDe:"~41% ansonsten fehlender Kandidatenprofile in einem sekundären Berufsnetzwerk über ein eigenes Anreicherungs-Prompt wiederhergestellt und damit die Match-Abdeckung deutlich erhöht; die Engine deckte echte Backdoor-Fälle auf und schützte 20k+ € an gefährdetem Rechnungsvolumen. Ergebnis: aus einem unsichtbaren Leck eine überwachte, quantifizierte Umsatzsicherungskontrolle gemacht.",
     stack:["Clay","RecruitCRM","Claygent","LinkedIn / secondary-network enrichment","AI models"] },
 
-  { titleEn:"Large-Scale CRM Data Hygiene, Merge & Recovery", titleDe:"Groß angelegte CRM-Datenhygiene, Merge & Recovery",
+  { pillar:"B", titleEn:"Large-Scale CRM Data Hygiene, Merge & Recovery", titleDe:"Groß angelegte CRM-Datenhygiene, Merge & Recovery",
     problemEn:"The CRM had ballooned with empty, duplicate, and low-value records, degrading search, reporting, and outbound quality.",
     problemDe:"Das CRM war mit leeren, doppelten und geringwertigen Datensätzen aufgebläht, was Suche, Reporting und Outbound-Qualität verschlechterte.",
     costEn:"Unreliable data, wasted sends, broken reporting.",
@@ -615,7 +793,7 @@ const PROJECTS = [
     resultDe:"Lead- und Kontaktbestand durch Entfernen leerer/doppelter/geringwertiger Datensätze deutlich reduziert; sichere Merges mit vorherigem Backup. Ergebnis: ein schlankeres, dedupliziertes, reporting-verlässliches CRM.",
     stack:["Close CRM","Python","Close REST API"] },
 
-  { titleEn:"Existing-Customer Monitoring System", titleDe:"Bestandskunden-Monitoring-System",
+  { pillar:"C", titleEn:"Existing-Customer Monitoring System", titleDe:"Bestandskunden-Monitoring-System",
     problemEn:"No systematic way to detect when existing customers had new hiring needs.",
     problemDe:"Kein systematischer Weg, um zu erkennen, wann Bestandskunden neuen Recruiting-Bedarf hatten.",
     costEn:"Missed expansion revenue and slow response to live demand.",
@@ -626,7 +804,7 @@ const PROJECTS = [
     resultDe:"Die URL-Abdeckung der Bestandskunden von ~88% auf 100% angehoben (vollständig überwachbare Basis). Ergebnis: aus dem Bestandskundenstamm einen aktiv überwachten Expansionskanal gemacht.",
     stack:["Clay","TheirStack","Close CRM","RecruitCRM"] },
 
-  { titleEn:"Autonomous Campaign-Intelligence Reporting Tool", titleDe:"Autonomes Campaign-Intelligence-Reporting-Tool",
+  { pillar:"C", titleEn:"Autonomous Campaign-Intelligence Reporting Tool", titleDe:"Autonomes Campaign-Intelligence-Reporting-Tool",
     problemEn:"Leadership had no automatic, digestible read on how active outbound campaigns were performing.",
     problemDe:"Der Führung fehlte ein automatischer, verständlicher Überblick über die Performance der aktiven Outbound-Kampagnen.",
     costEn:"Blind campaign management, slow optimization loops.",
@@ -637,7 +815,7 @@ const PROJECTS = [
     resultDe:"Vollständig autonome tägliche Kadenz mit 30-Tage-Trend + Empfehlungs-Reporting. Ergebnis: immer aktuelle, entscheidungsreife Campaign Intelligence ohne manuellen Reporting-Aufwand.",
     stack:["Claude / Claude Code","MCP","Smartlead","GitHub","Slack / Gmail"] },
 
-  { titleEn:"Automated Financial-Statement Ingestion Pipeline", titleDe:"Automatisierte BWA-/Finanzberichts-Ingestion-Pipeline",
+  { pillar:"D", titleEn:"Automated Financial-Statement Ingestion Pipeline", titleDe:"Automatisierte BWA-/Finanzberichts-Ingestion-Pipeline",
     problemEn:"Monthly financial statements had to be read and transcribed by hand into planning/dashboard sheets — slow and error-prone.",
     problemDe:"Monatliche Finanzberichte mussten von Hand gelesen und in Planungs-/Dashboard-Sheets übertragen werden — langsam und fehleranfällig.",
     costEn:"Manual month-end effort, transcription errors, delayed reporting.",
@@ -648,7 +826,7 @@ const PROJECTS = [
     resultDe:"Bei der Verifikation 100% korrekte Verarbeitung über den gesamten historischen Berichtssatz. Ergebnis: Ein-Klick-, verifizierte Finanz-Ingestion zum Monatsabschluss statt manueller Dateneingabe.",
     stack:["Google Apps Script","Claude","Advanced Drive API","Google Sheets"] },
 
-  { titleEn:"Invoice Archiving & Forwarding Automation Suite", titleDe:"Rechnungs-Archivierungs- & Weiterleitungs-Automatisierung",
+  { pillar:"D", titleEn:"Invoice Archiving & Forwarding Automation Suite", titleDe:"Rechnungs-Archivierungs- & Weiterleitungs-Automatisierung",
     problemEn:"Vendor invoices arrived scattered across mailboxes (many forwarded, vendor often only in the subject line); month-end close required manual collection, filing, and forwarding.",
     problemDe:"Lieferantenrechnungen kamen über verschiedene Postfächer verstreut an (viele weitergeleitet, Anbieter oft nur im Betreff); der Monatsabschluss erforderte manuelles Sammeln, Ablegen und Weiterleiten.",
     costEn:"Missed/duplicated invoices, manual overhead, incomplete audit trail.",
@@ -659,7 +837,7 @@ const PROJECTS = [
     resultDe:"100% deduplizierte Verarbeitung (jede Rechnung genau einmal); vollständig unbeaufsichtigte tägliche Läufe. Ergebnis: ein sauberer, deduplizierter, durchsuchbarer Rechnungs-Trail mit nahezu null manueller Bearbeitung.",
     stack:["Google Apps Script","Gmail","Google Drive","Qonto"] },
 
-  { titleEn:"GTM Strategy, Roadmap & Implementation Planning", titleDe:"GTM-Strategie, Roadmap & Umsetzungsplanung",
+  { pillar:"E", titleEn:"GTM Strategy, Roadmap & Implementation Planning", titleDe:"GTM-Strategie, Roadmap & Umsetzungsplanung",
     problemEn:"GTM initiatives lacked a unifying architecture, sequencing, and cost model.",
     problemDe:"Den GTM-Initiativen fehlten eine verbindende Architektur, Priorisierung und ein Kostenmodell.",
     costEn:"Fragmented efforts, unclear priorities, duplicated spend.",
@@ -670,7 +848,7 @@ const PROJECTS = [
     resultDe:"Multi-Infrastruktur-Roadmap und phasierter, kalkulierter Umsetzungsplan. Ergebnis: ein kohärenter, sequenzierter, kalkulierter GTM-Plan mit teamweitem Alignment.",
     stack:["Notion","Miro","Google Workspace","Loom"] },
 
-  { titleEn:"AI Content Co-pilot for the Inbound Motion", titleDe:"KI-Content-Co-Pilot für die Inbound-Bewegung",
+  { pillar:"E", titleEn:"AI Content Co-pilot for the Inbound Motion", titleDe:"KI-Content-Co-Pilot für die Inbound-Bewegung",
     problemEn:"The inbound motion needed consistent, on-brand content produced at speed to feed top-of-funnel demand.",
     problemDe:"Die Inbound-Bewegung brauchte konsistenten, markenkonformen Content, schnell produziert, um die Top-of-Funnel-Nachfrage zu speisen.",
     costEn:"Slow, inconsistent content output limiting inbound pipeline.",
@@ -681,7 +859,7 @@ const PROJECTS = [
     resultDe:"Wiederverwendbare KI-Content-Engine live für die Inbound-Bewegung. Ergebnis: schnellere, konsistente, markenkonforme Content-Produktion, die den Inbound-Funnel speist.",
     stack:["Claude / Claude Code","Custom skills"] },
 
-  { titleEn:"CRM & Workspace Architecture (ATS + Knowledge Hubs)", titleDe:"CRM- & Workspace-Architektur (ATS + Wissens-Hubs)",
+  { pillar:"F", titleEn:"CRM & Workspace Architecture (ATS + Knowledge Hubs)", titleDe:"CRM- & Workspace-Architektur (ATS + Wissens-Hubs)",
     problemEn:"The ATS and workspace lacked a coherent single-source-of-truth structure, automated stage logic, and usable views.",
     problemDe:"Dem ATS und Workspace fehlten eine kohärente Single-Source-of-Truth-Struktur, automatisierte Stage-Logik und nutzbare Ansichten.",
     costEn:"Manual stage management, inconsistent data, low adoption.",
@@ -692,7 +870,7 @@ const PROJECTS = [
     resultDe:"Komplettes Status-Modell-Redesign; Multi-Hub-Notion-Aufbau mit automatisiertem, stage-gesteuertem Aufgaben-Surfacing. Ergebnis: ein strukturiertes, weitgehend selbstlaufendes CRM/Workspace, das als Single Source of Truth fungiert.",
     stack:["RecruitCRM","Close CRM","Notion","Airtable","Make"] },
 
-  { titleEn:"Marketing-Ops & Lead-Capture Automation", titleDe:"Marketing-Ops & Lead-Capture-Automatisierung",
+  { pillar:"F", titleEn:"Marketing-Ops & Lead-Capture Automation", titleDe:"Marketing-Ops & Lead-Capture-Automatisierung",
     problemEn:"Inbound lead-capture and content flows were broken or manual (duplicate sends, failed hand-offs, third-party bottlenecks).",
     problemDe:"Inbound-Lead-Capture- und Content-Flows waren defekt oder manuell (Doppelversand, fehlgeschlagene Übergaben, Drittanbieter-Engpässe).",
     costEn:"Lost leads, duplicate outreach, silent failures.",
@@ -703,7 +881,7 @@ const PROJECTS = [
     resultDe:"Der Kandidaten-Intake-Redesign verursachte null Zusatzkosten (kostenpflichtige Drittanbieter-Abhängigkeit entfernt) und eliminierte stillen Lead-Verlust durch automatische Fehler-Alerts. Ergebnis: zuverlässige, sich selbst heilende Lead-Erfassung ohne stille Fehler und ohne unnötige Anbieterkosten.",
     stack:["Tally","Make","Zapier","Google Apps Script","WordPress/PHP","Webflow","RecruitCRM","0CodeKit"] },
 
-  { titleEn:"Technical Onboarding & Team Enablement", titleDe:"Technisches Onboarding & Team-Enablement",
+  { pillar:"F", titleEn:"Technical Onboarding & Team Enablement", titleDe:"Technisches Onboarding & Team-Enablement",
     problemEn:"New hires needed reliable technical onboarding, and the team needed coaching to actually adopt the recruiting workspace.",
     problemDe:"Neue Mitarbeiter brauchten ein zuverlässiges technisches Onboarding, und das Team brauchte Coaching, um den Recruiting-Workspace tatsächlich zu nutzen.",
     costEn:"Slow ramp, tool underutilization, dependency bottlenecks.",
@@ -766,9 +944,40 @@ const PRINCIPLES = [
     bodyDe:"Die tiefste Quelle nachhaltiger Führungsenergie, die ich je gefunden habe, ist die Frage — was braucht die Welt, das ich einzigartig bauen kann? Wenn diese Frage die Arbeit antreibt, fühlt sich die Arbeit nie wie Arbeit an." }
 ];
 
-/* ================= RENDER ================= */
+const PIPELINE_STEPS = [
+  { en:"Website Discovery / Recovery / Merge", de:"Website Discovery / Recovery / Merge",
+    descEn:"Resolve each company's canonical website, recover broken or missing URLs, and merge duplicate records into one.",
+    descDe:"Die kanonische Website jeder Firma auflösen, defekte oder fehlende URLs wiederherstellen und doppelte Datensätze zusammenführen." },
+  { en:"Company-Name Normalization", de:"Firmennamen-Normalisierung",
+    descEn:"Standardize company names across every data source into one consistent format.",
+    descDe:"Firmennamen über alle Datenquellen hinweg in ein einheitliches Format bringen." },
+  { en:"LinkedIn Discovery / Cleaning / Waterfall / Merge", de:"LinkedIn Discovery / Cleaning / Waterfall / Merge",
+    descEn:"Locate each company's LinkedIn presence through a multi-provider waterfall, clean the results, and merge them into the master record.",
+    descDe:"Die LinkedIn-Präsenz jeder Firma über einen Multi-Provider-Waterfall finden, die Ergebnisse bereinigen und in den Master-Datensatz mergen." },
+  { en:"Email Waterfall", de:"E-Mail-Waterfall",
+    descEn:"Run enrichment across multiple providers in sequence to resolve verified decision-maker emails.",
+    descDe:"Anreicherung über mehrere Anbieter nacheinander ausführen, um verifizierte E-Mail-Adressen von Entscheidungsträgern zu ermitteln." },
+  { en:"Job-Title Resolution", de:"Jobtitel-Auflösung",
+    descEn:"Normalize raw job titles into standardized roles usable for segmentation and targeting.",
+    descDe:"Rohe Jobtitel in standardisierte Rollen für Segmentierung und Targeting überführen." },
+  { en:"Source Tagging", de:"Source-Tagging",
+    descEn:"Tag every record with its originating source for attribution and downstream filtering.",
+    descDe:"Jeden Datensatz mit seiner Ursprungsquelle für Attribution und nachgelagerte Filterung taggen." },
+  { en:"Lead Lookup / Create / Update", de:"Lead Lookup / Create / Update",
+    descEn:"Check the CRM for an existing lead record, then create or update it without duplicating.",
+    descDe:"Das CRM auf einen bestehenden Lead-Datensatz prüfen und ihn ohne Duplizierung erstellen oder aktualisieren." },
+  { en:"Contact Lookup / Create / Update", de:"Contact Lookup / Create / Update",
+    descEn:"Check the CRM for an existing contact record, then create or update it without duplicating.",
+    descDe:"Das CRM auf einen bestehenden Kontakt-Datensatz prüfen und ihn ohne Duplizierung erstellen oder aktualisieren." }
+];
+
+/* ================= STATE ================= */
 
 let currentLang = 'en';
+let activePillar = 'all';
+let activePipelineStep = 0;
+
+/* ================= RENDER ================= */
 
 function renderStaticI18n(lang) {
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -779,34 +988,120 @@ function renderStaticI18n(lang) {
   });
 }
 
+function renderImpactStats(lang) {
+  const el = document.getElementById('impact-strip');
+  el.innerHTML = IMPACT_STATS.map(s => `
+    <div class="impact-stat">
+      <div class="impact-stat-num mono">${s.value}</div>
+      <div class="impact-stat-label">${lang === 'en' ? s.labelEn : s.labelDe}</div>
+    </div>
+  `).join('');
+}
+
+function renderFilterBar(lang) {
+  const el = document.getElementById('filter-bar');
+  const t = translations[lang];
+  const buttons = [{ id: 'all', labelEn: t.filterAll, labelDe: t.filterAll }, ...PILLARS];
+  el.innerHTML = buttons.map(p => `
+    <button type="button" class="filter-btn mono ${activePillar === p.id ? 'active' : ''}" onclick="setPillarFilter('${p.id}')">${lang === 'en' ? p.labelEn : p.labelDe}</button>
+  `).join('');
+}
+
+function setPillarFilter(id) {
+  activePillar = id;
+  renderFilterBar(currentLang);
+  renderProjects(currentLang);
+}
+
+function splitResult(text) {
+  const markers = ['Outcome:', 'Ergebnis:'];
+  for (const m of markers) {
+    const idx = text.indexOf(m);
+    if (idx !== -1) {
+      return { kpi: text.slice(0, idx).trim(), hook: text.slice(idx + m.length).trim() };
+    }
+  }
+  return { kpi: text, hook: '' };
+}
+
 function renderProjects(lang) {
   const grid = document.getElementById('project-grid');
   const t = translations[lang];
-  grid.innerHTML = PROJECTS.map(p => `
-    <div class="project-card">
-      <h3>${lang === 'en' ? p.titleEn : p.titleDe}</h3>
-      <div class="project-row">
-        <span class="label mono">${t.labelProblem}</span>
-        <span class="value">${lang === 'en' ? p.problemEn : p.problemDe}</span>
+  const list = activePillar === 'all' ? PROJECTS : PROJECTS.filter(p => p.pillar === activePillar);
+  grid.innerHTML = list.map(p => {
+    const resultText = lang === 'en' ? p.resultEn : p.resultDe;
+    const { kpi, hook } = splitResult(resultText);
+    const pillarInfo = PILLARS.find(pl => pl.id === p.pillar);
+    const pillarLabel = pillarInfo ? (lang === 'en' ? pillarInfo.labelEn : pillarInfo.labelDe) : '';
+    return `
+    <div class="project-card" data-pillar="${p.pillar}">
+      <div class="project-card-head" onclick="toggleProjectCard(this)">
+        <div class="project-pillar-tag mono">${pillarLabel}</div>
+        <h3>${lang === 'en' ? p.titleEn : p.titleDe}</h3>
+        <p class="project-hook">${hook}</p>
+        <div class="project-row stack-row">
+          <span class="label mono">${t.labelStack}</span>
+          <span class="value stack-value">${p.stack.join(' · ')}</span>
+        </div>
+        <button type="button" class="project-toggle mono">
+          <span class="toggle-text">${t.readMore}</span>
+          <span class="chevron">→</span>
+        </button>
       </div>
-      <div class="project-row">
-        <span class="label mono">${t.labelCost}</span>
-        <span class="value">${lang === 'en' ? p.costEn : p.costDe}</span>
-      </div>
-      <div class="project-row">
-        <span class="label mono">${t.labelSolution}</span>
-        <span class="value">${lang === 'en' ? p.solutionEn : p.solutionDe}</span>
-      </div>
-      <div class="project-row">
-        <span class="label mono">${t.labelResult}</span>
-        <span class="value">${lang === 'en' ? p.resultEn : p.resultDe}</span>
-      </div>
-      <div class="project-row">
-        <span class="label mono">${t.labelStack}</span>
-        <span class="value stack-value">${p.stack.join(' · ')}</span>
+      <div class="project-detail">
+        <div class="project-row">
+          <span class="label mono">${t.labelProblem}</span>
+          <span class="value">${lang === 'en' ? p.problemEn : p.problemDe}</span>
+        </div>
+        <div class="project-row">
+          <span class="label mono">${t.labelCost}</span>
+          <span class="value">${lang === 'en' ? p.costEn : p.costDe}</span>
+        </div>
+        <div class="project-row">
+          <span class="label mono">${t.labelSolution}</span>
+          <span class="value">${lang === 'en' ? p.solutionEn : p.solutionDe}</span>
+        </div>
+        <div class="project-row">
+          <span class="label mono">${t.labelResult}</span>
+          <span class="value">${kpi}</span>
+        </div>
       </div>
     </div>
+  `; }).join('');
+}
+
+function toggleProjectCard(headEl) {
+  const card = headEl.closest('.project-card');
+  const expanded = card.classList.toggle('expanded');
+  const btn = headEl.querySelector('.toggle-text');
+  const t = translations[currentLang];
+  btn.textContent = expanded ? t.readLess : t.readMore;
+}
+
+function renderPipeline(lang) {
+  const diagram = document.getElementById('pipeline-diagram');
+  diagram.innerHTML = PIPELINE_STEPS.map((s, i) => `
+    ${i > 0 ? '<span class="pipeline-connector">→</span>' : ''}
+    <div class="pipeline-node ${i === activePipelineStep ? 'active' : ''}" onclick="selectPipelineStep(${i})">
+      <span class="step-num mono">0${i + 1}</span>
+      <span class="step-name">${lang === 'en' ? s.en : s.de}</span>
+    </div>
   `).join('');
+  renderPipelineDetail(lang);
+}
+
+function renderPipelineDetail(lang) {
+  const el = document.getElementById('pipeline-detail');
+  const step = PIPELINE_STEPS[activePipelineStep];
+  el.innerHTML = `
+    <div class="step-title mono">0${activePipelineStep + 1} · ${lang === 'en' ? step.en : step.de}</div>
+    <p>${lang === 'en' ? step.descEn : step.descDe}</p>
+  `;
+}
+
+function selectPipelineStep(i) {
+  activePipelineStep = i;
+  renderPipeline(currentLang);
 }
 
 function renderTools(lang) {
@@ -831,7 +1126,10 @@ function renderPrinciples(lang) {
 
 function renderAll(lang) {
   renderStaticI18n(lang);
+  renderImpactStats(lang);
+  renderFilterBar(lang);
   renderProjects(lang);
+  renderPipeline(lang);
   renderTools(lang);
   renderPrinciples(lang);
 }
