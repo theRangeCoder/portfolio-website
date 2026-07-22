@@ -827,7 +827,9 @@ const TOOL_GROUPS = [
   { labelEn:"AI and Automation", labelDe:"KI und Automatisierung", tools:["Claude","Claude Code","OpenAI GPT","Make","Zapier","Webhooks","REST APIs","MCP","Claygent","Autonomous agent routines"] },
   { labelEn:"Data and Intelligence", labelDe:"Daten und Intelligence", tools:["SQLite","Airtable","Notion","Zenrows","0CodeKit"] },
   { labelEn:"Workspace and Ops", labelDe:"Workspace und Ops", tools:["Google Workspace","Slack","Miro","Loom","Qonto","1Password"] },
-  { labelEn:"Languages", labelDe:"Sprachen", tools:["Hindi (native)","English (native)","Deutsch C1","Español (learning)","Bengali (spoken)"] }
+  { labelEn:"Languages", labelDe:"Sprachen",
+    toolsEn:["Hindi (native)","English (native)","Deutsch C1","Español (learning)","Bengali (spoken)"],
+    toolsDe:["Hindi (Muttersprache)","Englisch (Muttersprache)","Deutsch C1","Spanisch (lernend)","Bengalisch (gesprochen)"] }
 ];
 
 const PRINCIPLES = [
@@ -980,12 +982,15 @@ function toggleProjectCard(headEl) {
 
 function renderTools(lang) {
   const grid = document.getElementById('tools-grid');
-  grid.innerHTML = TOOL_GROUPS.map(g => `
+  grid.innerHTML = TOOL_GROUPS.map(g => {
+    const toolList = g.toolsEn ? (lang === 'en' ? g.toolsEn : g.toolsDe) : g.tools;
+    return `
     <div class="tool-group">
       <div class="tool-group-label mono">${lang === 'en' ? g.labelEn : g.labelDe}</div>
-      <div class="tool-list">${g.tools.join(' · ')}</div>
+      <div class="tool-list">${toolList.join(' · ')}</div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function renderPrinciples(lang) {
@@ -1012,28 +1017,43 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.getElementById('btn-de').classList.toggle('active', lang === 'de');
   renderAll(lang);
+  if (terminalTyped) {
+    renderTerminalStatic(lang);
+  }
 }
 
 /* ================= TERMINAL TYPING ================= */
 
-const TERMINAL_LINES = [
-  { text: "shuvadarshan.bhual --mode gtm-architect", cls: "line-1" },
-  { text: "Loading: 9 years old. First line of code. Never stopped.", cls: "" },
-  { text: "Status: Building revenue infrastructure that compounds.", cls: "" }
-];
+const TERMINAL_LINES = {
+  en: [
+    { text: "shuvadarshan.bhual --mode gtm-architect", cls: "line-1" },
+    { text: "Loading: 9 years old. First line of code. Never stopped.", cls: "" },
+    { text: "Status: Building revenue infrastructure that compounds.", cls: "" }
+  ],
+  de: [
+    { text: "shuvadarshan.bhual --modus gtm-architekt", cls: "line-1" },
+    { text: "Lädt: 9 Jahre alt. Erste Zeile Code. Nie aufgehört.", cls: "" },
+    { text: "Status: Baue Revenue-Infrastruktur, die sich über Zeit auszahlt.", cls: "" }
+  ]
+};
 
-function typeTerminal() {
+let terminalTyped = false;
+
+function typeTerminal(lang) {
   const el = document.getElementById('terminal');
+  el.innerHTML = '';
+  const lines = TERMINAL_LINES[lang];
   let lineIdx = 0, charIdx = 0;
   const speed = 40;
 
   function typeChar() {
-    if (lineIdx >= TERMINAL_LINES.length) {
+    if (lineIdx >= lines.length) {
       el.innerHTML += '<span class="cursor"></span>';
+      terminalTyped = true;
       revealHero();
       return;
     }
-    const line = TERMINAL_LINES[lineIdx];
+    const line = lines[lineIdx];
     if (charIdx === 0) {
       el.innerHTML += `<div class="${line.cls}"></div>`;
     }
@@ -1050,6 +1070,12 @@ function typeTerminal() {
     }
   }
   typeChar();
+}
+
+function renderTerminalStatic(lang) {
+  const el = document.getElementById('terminal');
+  const lines = TERMINAL_LINES[lang];
+  el.innerHTML = lines.map(l => `<div class="${l.cls}">${l.text}</div>`).join('') + '<span class="cursor"></span>';
 }
 
 function revealHero() {
@@ -1102,7 +1128,7 @@ function setupNavScroll() {
 
 document.addEventListener('DOMContentLoaded', () => {
   renderAll(currentLang);
-  typeTerminal();
+  typeTerminal(currentLang);
   setupStatObserver();
   setupNavScroll();
 });
