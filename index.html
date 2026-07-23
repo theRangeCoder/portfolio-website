@@ -472,11 +472,11 @@
           <div class="stat-label" data-i18n="stat1"></div>
         </div>
         <div class="stat">
-          <div class="stat-num" data-count="10">0</div>
+          <div class="stat-num" data-count="10" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat2"></div>
         </div>
         <div class="stat">
-          <div class="stat-num" data-count="4">0</div>
+          <div class="stat-num" data-count="4" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat3"></div>
         </div>
       </div>
@@ -594,8 +594,8 @@ const translations = {
     toolsHeadline: "The stack. Led, built, and owned end to end.",
     toolsSub: "Every tool below is something I have architected systems around, integrated from scratch, or built on top of at the infrastructure level. Not things I have read about.",
 
-    principlesHeadline: "The principles I lead and build by.",
-    principlesSub: "Not values I chose because they sound right. Principles I have stress-tested against real leadership, real failure, and real growth.",
+    principlesHeadline: "The Compounding Code",
+    principlesSub: "Thirteen principles I lead and build by. Not values I chose because they sound right — principles I have stress-tested against real leadership, real failure, and real growth.",
 
     ctaHeadline: "Ready to build revenue infrastructure that actually compounds?",
     ctaSub: "If you are scaling a GTM function, solving a revenue problem that requires both strategic leadership and hands-on systems building, or looking for someone who thinks in decades not quarters — connect with me on LinkedIn. I respond to every thoughtful message personally.",
@@ -634,8 +634,8 @@ const translations = {
     toolsHeadline: "Der Stack. Geführt, gebaut und end-to-end verantwortet.",
     toolsSub: "Jedes Tool unten ist etwas, um das ich Systeme architektiert, von Grund auf integriert oder auf Infrastrukturebene weitergebaut habe. Keine Tools, über die ich nur gelesen habe.",
 
-    principlesHeadline: "Die Prinzipien, nach denen ich führe und baue.",
-    principlesSub: "Keine Werte, die ich gewählt habe, weil sie gut klingen. Prinzipien, die ich an echter Führung, echtem Scheitern und echtem Wachstum gemessen habe.",
+    principlesHeadline: "Der Kodex des Wachstums",
+    principlesSub: "Dreizehn Prinzipien, nach denen ich führe und baue. Keine Werte, die ich gewählt habe, weil sie gut klingen — Prinzipien, die ich an echter Führung, echtem Scheitern und echtem Wachstum gemessen habe.",
 
     ctaHeadline: "Bereit, Revenue-Infrastruktur zu bauen, die wirklich wächst?",
     ctaSub: "Wenn du eine GTM-Funktion skalierst, ein Revenue-Problem löst, das sowohl strategische Führung als auch technisches Bauen erfordert, oder jemanden suchst, der in Jahrzehnten statt Quartalen denkt — verbinde dich auf LinkedIn. Ich antworte auf jede durchdachte Nachricht persönlich.",
@@ -655,7 +655,7 @@ const PILLARS = [
 ];
 
 const IMPACT_STATS = [
-  { value: "15", labelEn: "systems designed, architected, and built end-to-end", labelDe: "end-to-end entworfene, architektierte und gebaute Systeme" },
+  { value: "15+", labelEn: "systems designed, architected, and built end-to-end", labelDe: "end-to-end entworfene, architektierte und gebaute Systeme" },
   { value: "20k+ €", labelEn: "at-risk invoice volume protected by one detection engine", labelDe: "gefährdetes Rechnungsvolumen durch eine Detection-Engine geschützt" },
   { value: "100%", labelEn: "verified accuracy on financial-statement ingestion", labelDe: "verifizierte Genauigkeit bei der Finanzberichts-Ingestion" }
 ];
@@ -834,8 +834,8 @@ const TOOL_GROUPS = [
   { labelEn:"Data and Intelligence", labelDe:"Daten und Intelligence", tools:["SQLite","Airtable","Notion","Zenrows","0CodeKit"] },
   { labelEn:"Workspace and Ops", labelDe:"Workspace und Ops", tools:["Google Workspace","Slack","Miro","Loom","Qonto","1Password"] },
   { labelEn:"Languages", labelDe:"Sprachen",
-    toolsEn:["Hindi (native)","English (native)","Deutsch C1","Español (learning)","Bengali (spoken)"],
-    toolsDe:["Hindi (Muttersprache)","Englisch (Muttersprache)","Deutsch C1","Spanisch (lernend)","Bengalisch (gesprochen)"] }
+    toolsEn:["German — Full professional proficiency","English — Native or bilingual proficiency","Hindi — Native or bilingual proficiency","Bengali — Native or bilingual proficiency","Spanish — Elementary proficiency"],
+    toolsDe:["Deutsch — Verhandlungssicher","Englisch — Muttersprache oder zweisprachig","Hindi — Muttersprache oder zweisprachig","Bengalisch — Muttersprache oder zweisprachig","Spanisch — Grundkenntnisse"] }
 ];
 
 const PRINCIPLES = [
@@ -1092,6 +1092,7 @@ function revealHero() {
 
 function animateCount(el) {
   const target = parseInt(el.getAttribute('data-count'), 10);
+  const suffix = el.getAttribute('data-suffix') || '';
   const duration = 1400;
   const start = performance.now();
 
@@ -1101,7 +1102,7 @@ function animateCount(el) {
     if (progress < 1) {
       requestAnimationFrame(tick);
     } else {
-      el.textContent = target;
+      el.textContent = target + suffix;
     }
   }
   requestAnimationFrame(tick);
